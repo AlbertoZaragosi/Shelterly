@@ -279,6 +279,10 @@ public class SecondaryController {
         App.setRoot("altaAnimal"); 
     }
     
+    public void DarAltaUser() throws IOException{
+        App.setRoot("altaUser"); 
+    }
+    
     public void darBaja(){
         animal deletedAnimal = tablaAnimales.getSelectionModel().getSelectedItem();
         try {
@@ -360,5 +364,13 @@ public class SecondaryController {
     
     public void animalsPane(){
         animalsPane.toFront();
+    }
+    
+    public void Logout(){
+        try {
+            App.setRoot("primary");
+        } catch (IOException ex) {
+            Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
