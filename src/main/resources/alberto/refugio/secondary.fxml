@@ -21,7 +21,7 @@
             <Button fx:id="Logout" layoutX="37.0" layoutY="158.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="94.0" text="Log out" />
          </children>
       </Pane>
-      <Pane fx:id="search" layoutX="154.0" prefHeight="400.0" prefWidth="446.0" style="-fx-background-color: #AAAAAA;">
+      <Pane fx:id="animalsPane" layoutX="154.0" prefHeight="400.0" prefWidth="446.0" style="-fx-background-color: #AAAAAA;">
          <children>
             <TableView fx:id="tablaAnimales" layoutX="5.0" layoutY="186.0" prefHeight="200.0" prefWidth="436.0">
               <columns>
@@ -36,9 +36,25 @@
               </columns>
             </TableView>
             <Button fx:id="altaButton" layoutX="14.0" layoutY="139.0" mnemonicParsing="false" onAction="#DarAlta" prefHeight="42.0" prefWidth="131.0" text="Dar de alta" />
-            <Button fx:id="managementButton" layoutX="158.0" layoutY="14.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="131.0" text="Usuarios" />
+            <Button fx:id="changeToUsers" layoutX="158.0" layoutY="14.0" mnemonicParsing="false" onAction="#userPane" prefHeight="42.0" prefWidth="131.0" text="Usuarios" />
             <Button fx:id="bajaButton" layoutX="301.0" layoutY="139.0" mnemonicParsing="false" onAction="#darBaja" prefHeight="42.0" prefWidth="131.0" text="Dar de baja" />
             <Button fx:id="ModificarButton" layoutX="158.0" layoutY="139.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="131.0" text="Modificar animal" />
+         </children>
+      </Pane>
+      <Pane fx:id="usersPane" layoutX="154.0" layoutY="1.0" prefHeight="400.0" prefWidth="446.0" style="-fx-background-color: #AAAAAA;">
+         <children>
+            <TableView fx:id="tablaUsers" layoutX="5.0" layoutY="186.0" prefHeight="200.0" prefWidth="436.0">
+               <columns>
+                  <TableColumn fx:id="emailColumn" prefWidth="154.4000244140625" text="EMAIL" />
+                  <TableColumn fx:id="usernameColumn" minWidth="0.0" prefWidth="124.0" text="NAME" />
+                  <TableColumn fx:id="userageColumn" minWidth="0.0" prefWidth="74.39993286132812" text="AGE" />
+                  <TableColumn fx:id="userrootColumn" prefWidth="82.39993286132812" text="ROOT" />
+               </columns>
+            </TableView>
+            <Button fx:id="darAltaUser" layoutX="14.0" layoutY="139.0" mnemonicParsing="false" onAction="#DarAlta" prefHeight="42.0" prefWidth="131.0" text="Dar de alta" />
+            <Button fx:id="ChangeToAnimal" layoutX="158.0" layoutY="14.0" mnemonicParsing="false" onAction="#animalsPane" prefHeight="42.0" prefWidth="131.0" text="Animales" />
+            <Button fx:id="BajaUser" layoutX="301.0" layoutY="139.0" mnemonicParsing="false" onAction="#darBajaUser" prefHeight="42.0" prefWidth="131.0" text="Dar de baja" />
+            <Button fx:id="ModificarUser" layoutX="158.0" layoutY="139.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="131.0" text="Modificar user" />
          </children>
       </Pane>
    </children>

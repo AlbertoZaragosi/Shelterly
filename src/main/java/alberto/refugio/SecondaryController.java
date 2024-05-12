@@ -41,25 +41,43 @@ public class SecondaryController {
     ArrayList<animal> animales = new ArrayList();
 
     @FXML
+    private Button BajaUser;
+
+    @FXML
+    private Button ChangeToAnimal;
+
+    @FXML
     private Button Logout;
 
     @FXML
     private Pane Main;
 
     @FXML
-    private TableColumn<animal, Integer> ageColumn;
+    private Button ModificarButton;
 
     @FXML
-    private Pane alta;
+    private Button ModificarUser;
+
+    @FXML
+    private TableColumn<animal, Integer> ageColumn;
 
     @FXML
     private Button altaButton;
 
     @FXML
-    private Pane baja;
+    private Pane animalsPane;
 
     @FXML
     private Button bajaButton;
+
+    @FXML
+    private Button changeToUsers;
+
+    @FXML
+    private Button darAltaUser;
+
+    @FXML
+    private TableColumn<User, String> emailColumn;
 
     @FXML
     private TableColumn<animal, Date> entryColumn;
@@ -71,28 +89,31 @@ public class SecondaryController {
     private TableColumn<animal, Integer> idColumn;
 
     @FXML
-    private Button managementButton;
-
-    @FXML
     private TableColumn<animal, String> nameColumn;
 
     @FXML
     private TableColumn<animal, String> raceColumn;
 
     @FXML
-    private Pane search;
-
-    @FXML
-    private Button searchButton;
-
-    @FXML
     private TableView<animal> tablaAnimales;
+
+    @FXML
+    private TableView<User> tablaUsers;
 
     @FXML
     private TableColumn<animal, String> typeColumn;
 
     @FXML
-    private Pane users;
+    private TableColumn<User, Integer> userageColumn;
+
+    @FXML
+    private TableColumn<User, String> usernameColumn;
+
+    @FXML
+    private TableColumn<User, Boolean> userrootColumn;
+
+    @FXML
+    private Pane usersPane;
 
     @FXML
     private TableColumn<animal, Float> weightColumn;
@@ -158,11 +179,49 @@ public class SecondaryController {
             // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
         }
     }
+    
+    public void getAllUsers() {
+        try {
+            usersList.clear();
+            // Using jdbc
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Conection to db
+            String url = "jdbc:mysql://localhost:3307/shelterly";
+            String usuario = "root";
+            String contraseña = "";
+            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from users");
+
+            while (rs.next()) {
+                
+                String uname = rs.getString("uname");
+                int uage = rs.getInt("uage");
+                String uemail = rs.getString("uemail");
+                boolean uRoot = rs.getBoolean("isRoot");
+                String upass = rs.getString("upassw");
+                User u = new User(uname,uemail,uRoot,uage,upass);
+                usersList.add(u);
+                
+
+            }
+
+            rs.close();
+            stmt.close();
+            conexion.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+        }
+    }
 
     public void initialize() {
         //System.out.println(u.toString());
-        welcomeMessage.setText(welcomeMessage.getText() + " " + u.getName());
+        welcomeMessage.setText("Bienvenido: " + u.getName());
         this.getAllAnimals();
+        this.getAllUsers();
         idColumn.setCellValueFactory(new PropertyValueFactory<animal, Integer>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<animal, String>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<animal, String>("type"));
@@ -182,14 +241,29 @@ public class SecondaryController {
         tablaAnimales.setItems(FXCollections.observableArrayList());
         tablaAnimales.setItems(listaAnimales); 
         if (u.isRoot) {
-            managementButton.setDisable(false);
-            managementButton.setVisible(true);
+            changeToUsers.setDisable(false);
+            changeToUsers.setVisible(true);
         } else {
-            managementButton.setDisable(true);
-            managementButton.setVisible(false);
+            changeToUsers.setDisable(true);
+            changeToUsers.setVisible(false);
 
         }
         tablaAnimales.getSelectionModel().select(0); 
+        animalsPane.toFront();
+        
+        
+        userageColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("age"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
+        usernameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
+        userrootColumn.setCellValueFactory(new PropertyValueFactory<User, Boolean>("isRoot"));
+        
+        ObservableList<User> listaUsers = FXCollections.observableArrayList(usersList);
+        tablaUsers.setItems(FXCollections.observableArrayList());
+        tablaUsers.setItems(listaUsers);
+        
+        tablaUsers.getSelectionModel().select(0); 
+        
+        
 
     }
 
@@ -238,5 +312,53 @@ public class SecondaryController {
         
         
         
+    }
+    
+    public void darBajaUser(){
+        User deletedUser = tablaUsers.getSelectionModel().getSelectedItem();
+        try {
+            // Carga el controlador JDBC
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establece la conexión con la base de datos
+            String url = "jdbc:mysql://localhost:3307/shelterly";
+            String usuario = "root";
+            String contraseña = "";
+            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+
+            Statement stmt = conexion.createStatement();
+            String query = "DELETE FROM users WHERE uemail='"+deletedUser.getEmail()+"';";
+            if(u.getEmail().equalsIgnoreCase(deletedUser.getEmail())){
+                
+            }else{
+                stmt.executeUpdate(query);
+            }
+            
+            
+            
+
+            stmt.close();
+            conexion.close();
+            tablaAnimales.getSelectionModel().select(0);
+            this.initialize();
+            usersPane.toFront();
+        } catch (SQLException ex) {
+            Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+    }
+    
+    public void userPane(){
+        usersPane.toFront();
+    }
+    
+    public void animalsPane(){
+        animalsPane.toFront();
     }
 }
