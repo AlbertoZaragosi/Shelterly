@@ -120,6 +120,9 @@ public class SecondaryController {
 
     @FXML
     private Label welcomeMessage;
+    
+    @FXML
+    private Label errMess;
 
     public void getAllAnimals() {
         try {
@@ -377,12 +380,11 @@ public class SecondaryController {
     public void modificarUser(){
         try {
             modificarUser.u = tablaUsers.getSelectionModel().getSelectedItem();
-            App.setRoot("modificarUser");
+            if (tablaUsers.getSelectionModel().getSelectedItem().getEmail().equalsIgnoreCase(u.getEmail())) {
+                errMess.setText("ESE USUARIO ESTA SIENDO USADO");
+            }else App.setRoot("modificarUser");
         } catch (IOException ex) {
             Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
     }
 }

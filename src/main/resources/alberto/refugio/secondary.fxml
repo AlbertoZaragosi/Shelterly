@@ -19,6 +19,7 @@
             </Label>
             <Label fx:id="welcomeMessage" layoutX="18.0" layoutY="84.0" text="Bienvenido: " />
             <Button fx:id="Logout" layoutX="37.0" layoutY="158.0" mnemonicParsing="false" onAction="#Logout" prefHeight="42.0" prefWidth="94.0" text="Log out" />
+            <Label fx:id="errMess" layoutX="36.0" layoutY="218.0" textFill="RED" />
          </children>
       </Pane>
       <Pane fx:id="animalsPane" layoutX="154.0" prefHeight="400.0" prefWidth="446.0" style="-fx-background-color: #AAAAAA;">
@@ -54,7 +55,7 @@
             <Button fx:id="darAltaUser" layoutX="14.0" layoutY="139.0" mnemonicParsing="false" onAction="#DarAltaUser" prefHeight="42.0" prefWidth="131.0" text="Dar de alta" />
             <Button fx:id="ChangeToAnimal" layoutX="158.0" layoutY="14.0" mnemonicParsing="false" onAction="#animalsPane" prefHeight="42.0" prefWidth="131.0" text="Animales" />
             <Button fx:id="BajaUser" layoutX="301.0" layoutY="139.0" mnemonicParsing="false" onAction="#darBajaUser" prefHeight="42.0" prefWidth="131.0" text="Dar de baja" />
-            <Button fx:id="ModificarUser" layoutX="158.0" layoutY="139.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="131.0" text="Modificar user" />
+            <Button fx:id="ModificarUser" layoutX="158.0" layoutY="139.0" mnemonicParsing="false" onAction="#modificarUser" prefHeight="42.0" prefWidth="131.0" text="Modificar user" />
          </children>
       </Pane>
    </children>
