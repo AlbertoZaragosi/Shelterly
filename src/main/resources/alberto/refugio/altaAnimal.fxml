@@ -19,5 +19,6 @@
       <ChoiceBox fx:id="typeComboBox" layoutX="114.0" layoutY="211.0" prefWidth="150.0" />
       <ChoiceBox fx:id="RaceComboBox" layoutX="114.0" layoutY="268.0" prefWidth="150.0" />
       <Button fx:id="altaButton" layoutX="311.0" layoutY="263.0" mnemonicParsing="false" onAction="#darAlta" prefHeight="35.0" prefWidth="90.0" text="Dar de alta" />
+      <Button fx:id="Volver" layoutX="311.0" layoutY="306.0" mnemonicParsing="false" onAction="#volver" prefHeight="35.0" prefWidth="90.0" text="Volver" />
    </children>
 </AnchorPane>

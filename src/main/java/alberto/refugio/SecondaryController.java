@@ -373,4 +373,16 @@ public class SecondaryController {
             Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void modificarUser(){
+        try {
+            modificarUser.u = tablaUsers.getSelectionModel().getSelectedItem();
+            App.setRoot("modificarUser");
+        } catch (IOException ex) {
+            Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }
 }

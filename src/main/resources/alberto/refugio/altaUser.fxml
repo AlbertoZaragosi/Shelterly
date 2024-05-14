@@ -20,5 +20,6 @@
       <PasswordField fx:id="password" layoutX="116.0" layoutY="211.0" onAction="#showPassword" />
       <CheckBox fx:id="root" layoutX="222.0" layoutY="272.0" mnemonicParsing="false" text="Is Root" />
       <Label fx:id="ShowPass" layoutX="116.0" layoutY="237.0" />
+      <Button fx:id="Volver" layoutX="311.0" layoutY="305.0" mnemonicParsing="false" onAction="#volver" prefHeight="35.0" prefWidth="90.0" text="Volver" />
    </children>
 </AnchorPane>

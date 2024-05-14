@@ -11,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.scene.layout.Pane;
 
 public class RegisterController {
@@ -92,51 +94,11 @@ public class RegisterController {
         panel2.toFront();
     }
 
-    /*
-    public void Register() {
-        //rlou ovzq buxu nzdq
-
-        String correoEnvia = "shelterlynotify@gmail.com";
-        String contraseña = "rlouovzqbuxunzdq";
-        int num1 = (int) (Math.random() * 9);
-        int num2 = (int) (Math.random() * 9);
-        int num3 = (int) (Math.random() * 9);
-        int num4 = (int) (Math.random() * 9);
-        String msg = "" + num1 + num2 + num3 + num4;
-        System.out.println("AQUI SI 1");
-        Properties objPEC = new Properties();
-
-        objPEC.put("mail.smtp.host", "smtp.gmail.com");
-        objPEC.setProperty("mail.smtp.starttls.enable", "true");
-        objPEC.put("mail.smtp.port", "586");
-        objPEC.setProperty("mail.smtp.port", "586");
-        objPEC.put("mail.smtp.user", uEmail.getText());
-        objPEC.setProperty("mail.smtp.auth", "true");
-        System.out.println("AQUI SI 2");
-
-        Session sesion = Session.getDefaultInstance(objPEC);
-        MimeMessage mail = new MimeMessage(sesion);
-        System.out.println("AQUI SI 3");
-
+    public void volver(){
         try {
-            mail.setFrom(new InternetAddress(correoEnvia));
-            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(uEmail.getText()));
-            mail.setSubject(msg);
-            mail.setText(msg);
-        System.out.println("AQUI SI 4");
-
-            Transport transporte = sesion.getTransport("smtp");
-            transporte.connect(correoEnvia, contraseña);
-            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
-            transporte.close();
-        System.out.println("AQUI SI 5");
-
-            System.out.println("ENVIADO");
-        } catch (Exception e) {
-            System.err.println("ENVIADO");
-            e.printStackTrace();
+            App.setRoot("primary");
+        } catch (IOException ex) {
+            Logger.getLogger(modificarUser.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-     */
 }

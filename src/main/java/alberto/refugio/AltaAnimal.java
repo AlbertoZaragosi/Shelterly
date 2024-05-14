@@ -35,6 +35,9 @@ public class AltaAnimal {
 
     @FXML
     private TextField age;
+    
+    @FXML
+    private Button Volver;
 
     @FXML
     private Button altaButton;
@@ -141,6 +144,15 @@ public class AltaAnimal {
             Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
         }
             
+    }
+    
+    
+    public void volver(){
+        try {
+            App.setRoot("secondary");
+        } catch (IOException ex) {
+            Logger.getLogger(modificarUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
