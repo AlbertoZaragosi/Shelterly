@@ -39,7 +39,7 @@
             <Button fx:id="altaButton" layoutX="14.0" layoutY="139.0" mnemonicParsing="false" onAction="#DarAlta" prefHeight="42.0" prefWidth="131.0" text="Dar de alta" />
             <Button fx:id="changeToUsers" layoutX="158.0" layoutY="14.0" mnemonicParsing="false" onAction="#userPane" prefHeight="42.0" prefWidth="131.0" text="Usuarios" />
             <Button fx:id="bajaButton" layoutX="301.0" layoutY="139.0" mnemonicParsing="false" onAction="#darBaja" prefHeight="42.0" prefWidth="131.0" text="Dar de baja" />
-            <Button fx:id="ModificarButton" layoutX="158.0" layoutY="139.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="131.0" text="Modificar animal" />
+            <Button fx:id="ModificarButton" layoutX="158.0" layoutY="139.0" mnemonicParsing="false" onAction="#mofificarAnimal" prefHeight="42.0" prefWidth="131.0" text="Modificar animal" />
          </children>
       </Pane>
       <Pane fx:id="usersPane" layoutX="154.0" layoutY="1.0" prefHeight="400.0" prefWidth="446.0" style="-fx-background-color: #AAAAAA;">

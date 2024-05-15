@@ -387,4 +387,14 @@ public class SecondaryController {
             Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void mofificarAnimal(){
+        try {
+            modificarAnimal.a = tablaAnimales.getSelectionModel().getSelectedItem();
+            App.setRoot("modificarAnimal");
+            
+        } catch (Exception e) {
+        }
+    }
+    
 }
