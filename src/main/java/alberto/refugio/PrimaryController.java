@@ -123,7 +123,6 @@ public class PrimaryController {
                 boolean isRoot = rs.getBoolean("isRoot");
                 int age = rs.getInt("uage");
                 String passw = rs.getString("upassw");
-                System.out.println("MYSQL: " + passw + "\nTYPED: " + encryptPassword(this.userPassw.getText()) + "\nTYPED2" + this.userPassw.getText());
                 if (encryptPassword(this.userPassw.getText()).equals(passw)) {
                     u1 = new User(name, email, isRoot, age, passw);
                     SecondaryController.u = u1;

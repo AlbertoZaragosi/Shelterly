@@ -100,7 +100,7 @@ public abstract class animal {
 
     @Override
     public String toString() {
-        return "animal{" + "id=" + id + ", name=" + name + ", type=" + type + ", race=" + race + ", age=" + age + ", weight=" + weight + ", entryingDate=" + entryingDate + ", leavingDate=" + leavingDate + '}';
+        return ""+id ;
     }
 
     
