@@ -48,6 +48,9 @@ public class SecondaryController {
 
     @FXML
     private Button Logout;
+    
+    @FXML
+    private Button vacunaBoton;
 
     @FXML
     private Pane Main;
@@ -394,6 +397,15 @@ public class SecondaryController {
             App.setRoot("modificarAnimal");
             
         } catch (Exception e) {
+        }
+    }
+    
+    public void regitroVacunas(){
+        try {
+            RegistroVacunasController.a = tablaAnimales.getSelectionModel().getSelectedItem();
+            App.setRoot("registroVacunas");
+        } catch (IOException ex) {
+            Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
