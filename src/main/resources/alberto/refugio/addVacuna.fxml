@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.addVacunaController">
+   <children>
+      <Label layoutX="104.0" layoutY="111.0" prefHeight="18.0" prefWidth="170.0" text="vacunas para " />
+      <ComboBox fx:id="vacunas" layoutX="96.0" layoutY="129.0" prefHeight="26.0" prefWidth="181.0" />
+      <Button fx:id="añadir" layoutX="385.0" layoutY="89.0" mnemonicParsing="false" onAction="#addvacunaToAnimal" text="Añadir" />
+      <Button fx:id="volver" layoutX="386.0" layoutY="129.0" mnemonicParsing="false" onAction="#volver" text="Volver" />
+      <ImageView fx:id="img2" fitHeight="150.0" fitWidth="200.0" layoutX="77.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="img1" fitHeight="150.0" fitWidth="200.0" layoutX="324.0" layoutY="188.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

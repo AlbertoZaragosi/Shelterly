@@ -23,7 +23,7 @@
       <Label layoutX="251.0" layoutY="115.0" text="Raza:" />
       <Label fx:id="raza" layoutX="284.0" layoutY="115.0" text="example" />
       <Label fx:id="tipo" layoutX="125.0" layoutY="115.0" text="example" />
-      <Button fx:id="addVaccine" layoutX="409.0" layoutY="111.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="93.0" text="Añadir Vacuna" />
+      <Button fx:id="addVaccine" layoutX="409.0" layoutY="111.0" mnemonicParsing="false" onAction="#vacunar" prefHeight="26.0" prefWidth="93.0" text="Añadir Vacuna" />
       <Button fx:id="volver" layoutX="409.0" layoutY="61.0" mnemonicParsing="false" onAction="#volver" prefHeight="26.0" prefWidth="93.0" text="Volver" />
       <Label fx:id="animalID" layoutX="125.0" layoutY="65.0" text="example" />
    </children>

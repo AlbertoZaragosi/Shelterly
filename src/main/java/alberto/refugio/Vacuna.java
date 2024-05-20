@@ -52,6 +52,13 @@ public class Vacuna {
     public void setDuracionDias(int duracionDias) {
         this.duracionDias = duracionDias;
     }
+
+    @Override
+    public String toString() {
+        return vname;
+    }
+    
+    
     
     
     

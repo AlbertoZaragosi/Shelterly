@@ -69,7 +69,7 @@ public class RegistroVacunasController {
     @FXML
     public void initialize() {
         this.fillRegistro();
-        idColumn.setCellValueFactory(new PropertyValueFactory<RegistroVacuna, Integer>("id"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<RegistroVacuna, Integer>("id_vacuna"));
         fechaColumn.setCellValueFactory(new PropertyValueFactory<RegistroVacuna, Date>("fechaVacunacion"));
         durationColumn.setCellValueFactory(new PropertyValueFactory<RegistroVacuna, Integer>("duracion"));
         nextColumn.setCellValueFactory(new PropertyValueFactory<RegistroVacuna, Date>("nextVacuna"));
@@ -136,6 +136,15 @@ public class RegistroVacunasController {
             App.setRoot("secondary");
         } catch (IOException ex) {
             Logger.getLogger(modificarUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void vacunar(){
+        try {
+            addVacunaController.animal = a;
+            App.setRoot("addVacuna");
+        } catch (IOException ex) {
+            Logger.getLogger(RegistroVacunasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
