@@ -6,19 +6,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.modificarAnimal">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #9DDE8B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.modificarAnimal">
    <children>
-      <Label layoutX="116.0" layoutY="143.0" text="Nombre" />
+      <Label layoutX="116.0" layoutY="143.0" text="Nombre" textFill="#006769" />
       <TextField fx:id="name" layoutX="116.0" layoutY="161.0" />
-      <Label layoutX="282.0" layoutY="193.0" text="Weight" />
+      <Label layoutX="282.0" layoutY="193.0" text="Weight" textFill="#006769" />
       <TextField fx:id="weight" layoutX="282.0" layoutY="211.0" />
-      <Label layoutX="282.0" layoutY="142.0" text="Age" />
+      <Label layoutX="282.0" layoutY="142.0" text="Age" textFill="#006769" />
       <TextField fx:id="age" layoutX="282.0" layoutY="160.0" />
-      <Label layoutX="117.0" layoutY="244.0" text="Race" />
-      <Label layoutX="115.0" layoutY="193.0" text="Type" />
+      <Label layoutX="117.0" layoutY="244.0" text="Race" textFill="#006769" />
+      <Label layoutX="115.0" layoutY="193.0" text="Type" textFill="#006769" />
       <ChoiceBox fx:id="typeComboBox" layoutX="114.0" layoutY="211.0" prefWidth="150.0" />
       <ChoiceBox fx:id="RaceComboBox" layoutX="114.0" layoutY="268.0" prefWidth="150.0" />
-      <Button fx:id="altaButton" layoutX="311.0" layoutY="263.0" mnemonicParsing="false" onAction="#modificar" prefHeight="35.0" prefWidth="90.0" text="Modificar" />
-      <Button fx:id="Volver" layoutX="311.0" layoutY="306.0" mnemonicParsing="false" onAction="#volver" prefHeight="35.0" prefWidth="90.0" text="Volver" />
+      <Button fx:id="altaButton" layoutX="311.0" layoutY="263.0" mnemonicParsing="false" onAction="#modificar" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #40A578;" text="Modificar" textFill="WHITE" />
+      <Button fx:id="Volver" layoutX="311.0" layoutY="306.0" mnemonicParsing="false" onAction="#volver" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #40A578;" text="Volver" textFill="WHITE" />
    </children>
 </AnchorPane>

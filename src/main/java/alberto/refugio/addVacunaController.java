@@ -20,6 +20,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
 /**
@@ -30,6 +31,9 @@ public class addVacunaController {
 
     public static animal animal;
     ArrayList<Vacuna> vacunasList = new ArrayList();
+    
+    @FXML
+    private Label nombre;
 
     @FXML
     private Button añadir;
@@ -90,6 +94,7 @@ public class addVacunaController {
     }
 
     public void initialize() {
+        nombre.setText("vacunas para "+animal.getName());
         this.fillVacunas();
         ObservableList<Vacuna> listaAnimales = FXCollections.observableArrayList(vacunasList);
         vacunas.setItems(listaAnimales);

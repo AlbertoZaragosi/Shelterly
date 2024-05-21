@@ -7,19 +7,19 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.AltaUser">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #9DDE8B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.AltaUser">
    <children>
-      <Label layoutX="116.0" layoutY="143.0" text="Nombre" />
+      <Label layoutX="116.0" layoutY="143.0" text="Nombre" textFill="#006769" />
       <TextField fx:id="name" layoutX="116.0" layoutY="161.0" />
-      <Label layoutX="282.0" layoutY="193.0" text="Edad" />
+      <Label layoutX="282.0" layoutY="193.0" text="Edad" textFill="#006769" />
       <TextField fx:id="age" layoutX="282.0" layoutY="211.0" />
-      <Label layoutX="282.0" layoutY="142.0" text="Email" />
+      <Label layoutX="282.0" layoutY="142.0" text="Email" textFill="#006769" />
       <TextField fx:id="mail" layoutX="282.0" layoutY="160.0" />
-      <Button fx:id="altaButton" layoutX="311.0" layoutY="263.0" mnemonicParsing="false" onAction="#darAlta" prefHeight="35.0" prefWidth="90.0" text="Dar de alta" />
-      <Label layoutX="116.0" layoutY="193.0" text="Contraseña" />
+      <Button fx:id="altaButton" layoutX="311.0" layoutY="263.0" mnemonicParsing="false" onAction="#darAlta" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #40A578;" text="Dar de alta" textFill="WHITE" />
+      <Label layoutX="116.0" layoutY="193.0" text="Contraseña" textFill="#006769" />
       <PasswordField fx:id="password" layoutX="116.0" layoutY="211.0" onAction="#showPassword" />
-      <CheckBox fx:id="root" layoutX="222.0" layoutY="272.0" mnemonicParsing="false" text="Is Root" />
+      <CheckBox fx:id="root" layoutX="222.0" layoutY="272.0" mnemonicParsing="false" text="Is Root" textFill="#006769" />
       <Label fx:id="ShowPass" layoutX="116.0" layoutY="237.0" />
-      <Button fx:id="Volver" layoutX="311.0" layoutY="305.0" mnemonicParsing="false" onAction="#volver" prefHeight="35.0" prefWidth="90.0" text="Volver" />
+      <Button fx:id="Volver" layoutX="311.0" layoutY="305.0" mnemonicParsing="false" onAction="#volver" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #40A578;" text="Volver" textFill="WHITE" />
    </children>
 </AnchorPane>

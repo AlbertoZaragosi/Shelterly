@@ -11,6 +11,7 @@ import java.sql.Date;
  * @author neong
  */
 public abstract class animal {
+
     int id;
     String name;
     String type;
@@ -19,6 +20,7 @@ public abstract class animal {
     float weight;
     Date entryingDate;
     Date leavingDate;
+    String owner_ID;
 
     public animal(int id, String name, String type, String race, int age, float weight, Date entryingDate, Date leavingDate) {
         this.id = id;
@@ -29,6 +31,19 @@ public abstract class animal {
         this.weight = weight;
         this.entryingDate = entryingDate;
         this.leavingDate = leavingDate;
+        this.owner_ID = null;
+    }
+
+    public animal(int id, String name, String type, String race, int age, float weight, Date entryingDate, Date leavingDate,String owner) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.race = race;
+        this.age = age;
+        this.weight = weight;
+        this.entryingDate = entryingDate;
+        this.leavingDate = leavingDate;
+        this.owner_ID = owner;
     }
 
     public animal() {
@@ -100,10 +115,7 @@ public abstract class animal {
 
     @Override
     public String toString() {
-        return ""+id ;
+        return "" + id;
     }
 
-    
-    
-    
 }

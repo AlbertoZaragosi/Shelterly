@@ -16,7 +16,9 @@ public class Reptile extends animal{
     public Reptile(int id, String name, String type, String race, int age, float weight, Date entryingDate, Date leavingDate) {
         super(id, name, "reptile", race, age, weight, entryingDate, leavingDate);
     }
-
+public Reptile(int id, String name, String type, String race, int age, float weight, Date entryingDate, Date leavingDate,String owner) {
+        super(id, name, "reptile", race, age, weight, entryingDate, leavingDate,owner);
+    }
     
     
 }

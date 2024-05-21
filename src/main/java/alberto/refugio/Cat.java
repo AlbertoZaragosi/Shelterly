@@ -16,7 +16,9 @@ public class Cat extends animal{
         super(id, name, "cat", race, age, weight, entryingDate, leavingDate);
     }
     
-    
+    public Cat(int id, String name, String type, String race, int age, float weight, Date entryingDate, Date leavingDate,String owner) {
+        super(id, name, "cat", race, age, weight, entryingDate, leavingDate,owner);
+    }
     
     
 }

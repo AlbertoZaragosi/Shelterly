@@ -16,6 +16,8 @@ public class Roudent extends animal {
         super(id, name, "roudent", race, age, weight, entryingDate, leavingDate);
     }
 
-    
+    public Roudent(int id, String name, String type, String race, int age, float weight, Date entryingDate, Date leavingDate, String owner) {
+        super(id, name, "roudent", race, age, weight, entryingDate, leavingDate, owner);
+    }
 
 }

@@ -15,5 +15,8 @@ public class Bird extends animal{
     public Bird(int id, String name, String type, String race, int age, float weight, Date entryingDate, Date leavingDate) {
         super(id, name, "bird", race, age, weight, entryingDate, leavingDate);
     }
+    public Bird(int id, String name, String type, String race, int age, float weight, Date entryingDate, Date leavingDate,String owner) {
+        super(id, name, "bird", race, age, weight, entryingDate, leavingDate,owner);
+    }
     
 }

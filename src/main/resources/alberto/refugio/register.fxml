@@ -8,34 +8,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.RegisterController">
    <children>
-      <Pane fx:id="panel" layoutY="-2.0" prefHeight="407.0" prefWidth="600.0" style="-fx-background-color: #CCCCCC;">
+      <Pane fx:id="panel2" prefHeight="407.0" prefWidth="600.0" style="-fx-background-color: #9DDE8B;">
          <children>
-            <Label layoutX="165.0" layoutY="133.0" text="DONE">
-               <font>
-                  <Font name="System Bold" size="96.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Pane fx:id="panel2" prefHeight="407.0" prefWidth="600.0" style="-fx-background-color: #CCCCCC;">
-         <children>
-            <Label layoutX="164.0" layoutY="69.0" text="REGISTER">
+            <Label layoutX="164.0" layoutY="69.0" text="REGISTER" textFill="#006769">
                <font>
                   <Font name="System Bold" size="60.0" />
                </font>
             </Label>
-            <Label layoutX="148.0" layoutY="195.0" text="Name" />
+            <Label layoutX="148.0" layoutY="195.0" text="Name" textFill="#006769" />
             <TextField fx:id="uname" layoutX="149.0" layoutY="220.0" />
-            <Label layoutX="153.0" layoutY="245.0" text="Age" />
+            <Label layoutX="153.0" layoutY="245.0" text="Age" textFill="#006769" />
             <TextField fx:id="uAge" layoutX="149.0" layoutY="263.0" />
-            <Label layoutX="151.0" layoutY="293.0" text="Emai" />
+            <Label layoutX="151.0" layoutY="293.0" text="Emai" textFill="#006769" />
             <TextField fx:id="uEmail" layoutX="149.0" layoutY="310.0" />
             <PasswordField fx:id="uPassw" layoutX="311.0" layoutY="220.0" />
-            <Label layoutX="311.0" layoutY="195.0" text="Password" />
-            <Button fx:id="Register" layoutX="310.0" layoutY="263.0" mnemonicParsing="false" onAction="#Register" prefHeight="26.0" prefWidth="150.0" text="Create Account" />
+            <Label layoutX="311.0" layoutY="195.0" text="Password" textFill="#006769" />
+            <Button fx:id="Register" layoutX="310.0" layoutY="263.0" mnemonicParsing="false" onAction="#Register" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #40A578;" text="Create Account" textFill="WHITE" />
          </children>
       </Pane>
    </children>
