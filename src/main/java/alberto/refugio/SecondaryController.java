@@ -36,9 +36,12 @@ import javafx.stage.Stage;
 public class SecondaryController {
 
     public static User u;
+
     User user;
     ArrayList<User> usersList = new ArrayList();
     ArrayList<animal> animales = new ArrayList();
+    ArrayList<animal> animalesIDOS = new ArrayList();
+    ArrayList<animal> animalesDISPO = new ArrayList();
 
     @FXML
     private Button BajaUser;
@@ -74,6 +77,15 @@ public class SecondaryController {
     private Button bajaButton;
 
     @FXML
+    private Button TODOS;
+
+    @FXML
+    private Button AVALIABLE;
+
+    @FXML
+    private Button IDOS;
+
+    @FXML
     private Button changeToUsers;
 
     @FXML
@@ -85,7 +97,6 @@ public class SecondaryController {
     @FXML
     private TableColumn<animal, Date> entryColumn;
 
-    
     @FXML
     private TableColumn<animal, Integer> idColumn;
 
@@ -114,10 +125,64 @@ public class SecondaryController {
     private TableColumn<User, Boolean> userrootColumn;
 
     @FXML
+    private TableColumn<animal, Date> exitColumn;
+
+    @FXML
     private Pane usersPane;
 
     @FXML
     private TableColumn<animal, Float> weightColumn;
+
+    @FXML
+    private TableView<animal> tablaAnimalesIDOS;
+
+    @FXML
+    private TableColumn<animal, Integer> idColumnIDOS;
+
+    @FXML
+    private TableColumn<animal, String> nameColumnIDOS;
+
+    @FXML
+    private TableColumn<animal, String> typeColumnIDOS;
+
+    @FXML
+    private TableColumn<animal, String> raceColumnIDOS;
+
+    @FXML
+    private TableColumn<animal, Integer> ageColumnIDOS;
+
+    @FXML
+    private TableColumn<animal, Float> weightColumnIDOS;
+
+    @FXML
+    private TableColumn<animal, Date> entryColumnIDOS;
+
+    @FXML
+    private TableColumn<animal, Date> exitColumnIDOS;
+
+    @FXML
+    private TableView<animal> tablaAnimalesAvaliable;
+
+    @FXML
+    private TableColumn<animal, Integer> idColumnAV;
+
+    @FXML
+    private TableColumn<animal, String> nameColumnAV;
+
+    @FXML
+    private TableColumn<animal, String> typeColumnAV;
+
+    @FXML
+    private TableColumn<animal, String> raceColumnAV;
+
+    @FXML
+    private TableColumn<animal, Integer> ageColumnAV;
+
+    @FXML
+    private TableColumn<animal, Float> weightColumnAV;
+
+    @FXML
+    private TableColumn<animal, Date> entryColumnAV;
 
     @FXML
     private Label welcomeMessage;
@@ -174,26 +239,26 @@ public class SecondaryController {
                             animales.add(a);
                             break;
                     }
-                }else{
+                } else {
                     switch (atype) {
                         case "cat":
-                            a = new Cat(aid, aname, atype, arace, aage, aweight, entry_date, exit_date,owner_ID);
+                            a = new Cat(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
                             animales.add(a);
                             break;
                         case "dog":
-                            a = new Dog(aid, aname, atype, arace, aage, aweight, entry_date, exit_date,owner_ID);
+                            a = new Dog(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
                             animales.add(a);
                             break;
                         case "reptile":
-                            a = new Reptile(aid, aname, atype, arace, aage, aweight, entry_date, exit_date,owner_ID);
+                            a = new Reptile(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
                             animales.add(a);
                             break;
                         case "rodent":
-                            a = new Roudent(aid, aname, atype, arace, aage, aweight, entry_date, exit_date,owner_ID);
+                            a = new Roudent(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
                             animales.add(a);
                             break;
                         case "bird":
-                            a = new Bird(aid, aname, atype, arace, aage, aweight, entry_date, exit_date,owner_ID);
+                            a = new Bird(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
                             animales.add(a);
                             break;
                     }
@@ -208,6 +273,233 @@ public class SecondaryController {
             ex.printStackTrace();
             // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
         }
+
+        //Columnas de todos
+        idColumn.setCellValueFactory(new PropertyValueFactory<animal, Integer>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<animal, String>("name"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<animal, String>("type"));
+
+        raceColumn.setCellValueFactory(new PropertyValueFactory<animal, String>("race"));
+
+        ageColumn.setCellValueFactory(new PropertyValueFactory<animal, Integer>("age"));
+        weightColumn.setCellValueFactory(new PropertyValueFactory<animal, Float>("weight"));
+        entryColumn.setCellValueFactory(new PropertyValueFactory<animal, Date>("entryingDate"));
+        exitColumn.setCellValueFactory(new PropertyValueFactory<animal, Date>("leavingDate"));
+
+        ObservableList<animal> listaAnimales = FXCollections.observableArrayList(animales);
+
+        tablaAnimales.setItems(FXCollections.observableArrayList());
+        tablaAnimales.setItems(listaAnimales);
+
+        tablaAnimales.getSelectionModel().select(0);
+    }
+
+    public void getAllAnimalsIDOS() {
+        try {
+            animalesIDOS.clear();
+            // Using jdbc
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Conection to db
+            String url = "jdbc:mysql://localhost:3307/shelterly";
+            String usuario = "root";
+            String contraseña = "";
+            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from animal where exit_date is not null");
+
+            while (rs.next()) {
+                int aid = rs.getInt("aid");
+                String aname = rs.getString("aname");
+                int aage = rs.getInt("aage");
+                float aweight = rs.getFloat("aweight");
+                String atype = rs.getString("atype");
+                String arace = rs.getString("arace");
+                Date entry_date = rs.getDate("entry_date");
+                Date exit_date = rs.getDate("exit_date");
+                String owner_ID = rs.getString("owner_id");
+                animal a;
+                if (owner_ID != null) {
+                    switch (atype) {
+                        case "cat":
+                            a = new Cat(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesIDOS.add(a);
+                            break;
+                        case "dog":
+                            a = new Dog(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesIDOS.add(a);
+                            break;
+                        case "reptile":
+                            a = new Reptile(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesIDOS.add(a);
+                            break;
+                        case "rodent":
+                            a = new Roudent(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesIDOS.add(a);
+                            break;
+                        case "bird":
+                            a = new Bird(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesIDOS.add(a);
+                            break;
+                    }
+                } else {
+                    switch (atype) {
+                        case "cat":
+                            a = new Cat(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesIDOS.add(a);
+                            break;
+                        case "dog":
+                            a = new Dog(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesIDOS.add(a);
+                            break;
+                        case "reptile":
+                            a = new Reptile(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesIDOS.add(a);
+                            break;
+                        case "rodent":
+                            a = new Roudent(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesIDOS.add(a);
+                            break;
+                        case "bird":
+                            a = new Bird(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesIDOS.add(a);
+                            break;
+                    }
+                }
+
+            }
+
+            rs.close();
+            stmt.close();
+            conexion.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+        }
+
+        //Columnas de los idos
+        idColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, Integer>("id"));
+        nameColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, String>("name"));
+        typeColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, String>("type"));
+
+        raceColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, String>("race"));
+
+        ageColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, Integer>("age"));
+        weightColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, Float>("weight"));
+        entryColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, Date>("entryingDate"));
+
+        exitColumn.setCellValueFactory(new PropertyValueFactory<animal, Date>("leavingDate"));
+
+        ObservableList<animal> listaAnimalesIDOS = FXCollections.observableArrayList(animalesIDOS);
+
+        tablaAnimalesIDOS.setItems(FXCollections.observableArrayList());
+        tablaAnimalesIDOS.setItems(listaAnimalesIDOS);
+
+        tablaAnimalesIDOS.getSelectionModel().select(0);
+    }
+
+    public void getAllAnimalsAV() {
+        try {
+            animalesDISPO.clear();
+            // Using jdbc
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Conection to db
+            String url = "jdbc:mysql://localhost:3307/shelterly";
+            String usuario = "root";
+            String contraseña = "";
+            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery("select * from animal where exit_date is null");
+
+            while (rs.next()) {
+                int aid = rs.getInt("aid");
+                String aname = rs.getString("aname");
+                int aage = rs.getInt("aage");
+                float aweight = rs.getFloat("aweight");
+                String atype = rs.getString("atype");
+                String arace = rs.getString("arace");
+                Date entry_date = rs.getDate("entry_date");
+                Date exit_date = rs.getDate("exit_date");
+                String owner_ID = rs.getString("owner_id");
+                animal a;
+                if (owner_ID != null) {
+                    switch (atype) {
+                        case "cat":
+                            a = new Cat(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesDISPO.add(a);
+                            break;
+                        case "dog":
+                            a = new Dog(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesDISPO.add(a);
+                            break;
+                        case "reptile":
+                            a = new Reptile(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesDISPO.add(a);
+                            break;
+                        case "rodent":
+                            a = new Roudent(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesDISPO.add(a);
+                            break;
+                        case "bird":
+                            a = new Bird(aid, aname, atype, arace, aage, aweight, entry_date, exit_date);
+                            animalesDISPO.add(a);
+                            break;
+                    }
+                } else {
+                    switch (atype) {
+                        case "cat":
+                            a = new Cat(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesDISPO.add(a);
+                            break;
+                        case "dog":
+                            a = new Dog(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesDISPO.add(a);
+                            break;
+                        case "reptile":
+                            a = new Reptile(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesDISPO.add(a);
+                            break;
+                        case "rodent":
+                            a = new Roudent(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesDISPO.add(a);
+                            break;
+                        case "bird":
+                            a = new Bird(aid, aname, atype, arace, aage, aweight, entry_date, exit_date, owner_ID);
+                            animalesDISPO.add(a);
+                            break;
+                    }
+                }
+
+            }
+
+            rs.close();
+            stmt.close();
+            conexion.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+        }
+        //Columnas de los avaliable
+        idColumnAV.setCellValueFactory(new PropertyValueFactory<animal, Integer>("id"));
+        nameColumnAV.setCellValueFactory(new PropertyValueFactory<animal, String>("name"));
+        typeColumnAV.setCellValueFactory(new PropertyValueFactory<animal, String>("type"));
+
+        raceColumnAV.setCellValueFactory(new PropertyValueFactory<animal, String>("race"));
+
+        ageColumnAV.setCellValueFactory(new PropertyValueFactory<animal, Integer>("age"));
+        weightColumnAV.setCellValueFactory(new PropertyValueFactory<animal, Float>("weight"));
+        entryColumnAV.setCellValueFactory(new PropertyValueFactory<animal, Date>("entryingDate"));
+
+        ObservableList<animal> listaAnimalesDISPO = FXCollections.observableArrayList(animalesDISPO);
+
+        tablaAnimalesAvaliable.setItems(FXCollections.observableArrayList());
+        tablaAnimalesAvaliable.setItems(listaAnimalesDISPO);
+
+        tablaAnimalesAvaliable.getSelectionModel().select(0);
+
     }
 
     public void getAllUsers() {
@@ -244,37 +536,6 @@ public class SecondaryController {
             ex.printStackTrace();
             // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
         }
-    }
-
-    public void initialize() {
-        //System.out.println(u.toString());
-        welcomeMessage.setText("Bienvenido: " + u.getName());
-        this.getAllAnimals();
-        this.getAllUsers();
-        idColumn.setCellValueFactory(new PropertyValueFactory<animal, Integer>("id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<animal, String>("name"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<animal, String>("type"));
-
-        raceColumn.setCellValueFactory(new PropertyValueFactory<animal, String>("race"));
-
-        ageColumn.setCellValueFactory(new PropertyValueFactory<animal, Integer>("age"));
-        weightColumn.setCellValueFactory(new PropertyValueFactory<animal, Float>("weight"));
-        entryColumn.setCellValueFactory(new PropertyValueFactory<animal, Date>("entryingDate"));
-
-        ObservableList<animal> listaAnimales = FXCollections.observableArrayList(animales);
-
-        tablaAnimales.setItems(FXCollections.observableArrayList());
-        tablaAnimales.setItems(listaAnimales);
-        if (u.isRoot) {
-            changeToUsers.setDisable(false);
-            changeToUsers.setVisible(true);
-        } else {
-            changeToUsers.setDisable(true);
-            changeToUsers.setVisible(false);
-
-        }
-        tablaAnimales.getSelectionModel().select(0);
-        animalsPane.toFront();
 
         userageColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("age"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
@@ -286,6 +547,28 @@ public class SecondaryController {
         tablaUsers.setItems(listaUsers);
 
         tablaUsers.getSelectionModel().select(0);
+    }
+
+    public void initialize() {
+
+        //System.out.println(u.toString());
+        welcomeMessage.setText("Bienvenido: " + u.getName());
+        this.getAllAnimals();
+        this.getAllAnimalsIDOS();
+        this.getAllAnimalsAV();
+        this.getAllUsers();
+        this.showAllAnimales();
+
+        if (u.isRoot) {
+            changeToUsers.setDisable(false);
+            changeToUsers.setVisible(true);
+        } else {
+            changeToUsers.setDisable(true);
+            changeToUsers.setVisible(false);
+
+        }
+
+        animalsPane.toFront();
 
     }
 
@@ -306,31 +589,23 @@ public class SecondaryController {
     }
 
     public void darBaja() {
-        animal deletedAnimal = tablaAnimales.getSelectionModel().getSelectedItem();
         try {
-            // Carga el controlador JDBC
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            if (tablaAnimales.isVisible()) {
+                darBajaAnimalController.animalito = tablaAnimales.getSelectionModel().getSelectedItem();
 
-            // Establece la conexión con la base de datos
-            String url = "jdbc:mysql://localhost:3307/shelterly";
-            String usuario = "root";
-            String contraseña = "";
-            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+            } else if (tablaAnimalesAvaliable.isVisible()) {
+                darBajaAnimalController.animalito = tablaAnimalesAvaliable.getSelectionModel().getSelectedItem();
 
-            Statement stmt = conexion.createStatement();
+            } else if (tablaAnimalesIDOS.isVisible()) {
+                darBajaAnimalController.animalito = tablaAnimalesIDOS.getSelectionModel().getSelectedItem();
 
-            String query = "DELETE FROM animal WHERE aid=" + deletedAnimal.getId() + ";";
-
-            stmt.executeUpdate(query);
-
-            stmt.close();
-            conexion.close();
-            tablaAnimales.getSelectionModel().select(0);
-            this.initialize();
-        } catch (SQLException ex) {
-            Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            App.setRoot("darBajaAnimal");
+            this.getAllAnimals();
+            this.getAllAnimalsAV();
+            this.getAllAnimalsIDOS();
+        } catch (IOException ex) {
+            Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -357,14 +632,15 @@ public class SecondaryController {
 
             stmt.close();
             conexion.close();
-            tablaAnimales.getSelectionModel().select(0);
-            this.initialize();
+            tablaUsers.getSelectionModel().select(0);
             usersPane.toFront();
         } catch (SQLException ex) {
             Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        this.getAllUsers();
 
     }
 
@@ -415,4 +691,34 @@ public class SecondaryController {
         }
     }
 
+    public void showAllAnimales() {
+        TODOS.setDisable(true);
+        AVALIABLE.setDisable(false);
+        IDOS.setDisable(false);
+        tablaAnimales.toFront();
+        tablaAnimales.setVisible(true);
+        tablaAnimalesIDOS.setVisible(false);
+        tablaAnimalesAvaliable.setVisible(false);
+
+    }
+
+    public void showIDOSAnimales() {
+        TODOS.setDisable(false);
+        AVALIABLE.setDisable(false);
+        IDOS.setDisable(true);
+        tablaAnimalesIDOS.toFront();
+        tablaAnimales.setVisible(false);
+        tablaAnimalesIDOS.setVisible(true);
+        tablaAnimalesAvaliable.setVisible(false);
+    }
+
+    public void showAvaliableAnimales() {
+        TODOS.setDisable(false);
+        AVALIABLE.setDisable(true);
+        IDOS.setDisable(false);
+        tablaAnimalesAvaliable.toFront();
+        tablaAnimales.setVisible(false);
+        tablaAnimalesIDOS.setVisible(false);
+        tablaAnimalesAvaliable.setVisible(true);
+    }
 }

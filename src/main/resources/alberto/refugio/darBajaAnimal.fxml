@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #9DDE8B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.darBajaAnimalController">
+   <children>
+      <Button fx:id="adopcionButton" layoutX="151.0" layoutY="41.0" mnemonicParsing="false" onAction="#frontAdopt" prefHeight="26.0" prefWidth="129.0" style="-fx-background-color: #40A578;" text="Adopcion" textFill="WHITE" />
+      <Button fx:id="deathButton" layoutX="319.0" layoutY="41.0" mnemonicParsing="false" onAction="#frontDeath" prefHeight="26.0" prefWidth="129.0" style="-fx-background-color: #40A578;" text="Fallecimiento" textFill="WHITE" />
+      <Pane fx:id="fallecimiento" layoutY="100.0" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #9DDE8B;">
+         <children>
+            <Label layoutX="85.0" layoutY="38.0" prefHeight="30.0" prefWidth="89.0" text="Nombre:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="nombreAnimalFallecimiento" layoutX="168.0" layoutY="38.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="85.0" layoutY="98.0" prefHeight="30.0" prefWidth="89.0" text="Edad:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="edadAnimalFallecimiento" layoutX="168.0" layoutY="98.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="88.0" layoutY="68.0" prefHeight="30.0" prefWidth="89.0" text="Peso:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="pesoAnimalFallecimiento" layoutX="171.0" layoutY="68.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="296.0" layoutY="68.0" prefHeight="30.0" prefWidth="89.0" text="Tipo:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="tipoAnimalFallecimiento" layoutX="379.0" layoutY="68.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="296.0" layoutY="98.0" prefHeight="30.0" prefWidth="89.0" text="Raza:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="razaAnimalFallecimiento" layoutX="379.0" layoutY="98.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="fechaEntradaFallecimiento" layoutX="186.0" layoutY="135.0" prefHeight="30.0" prefWidth="139.0" text="fecha entrada:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="327.0" layoutY="135.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="295.0" layoutY="38.0" prefHeight="30.0" prefWidth="89.0" text="Id:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="idAnimalFallecimiento" layoutX="378.0" layoutY="38.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="fechaFallecimiento" layoutX="140.0" layoutY="165.0" prefHeight="30.0" prefWidth="176.0" text="fecha fallecimiento:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="327.0" layoutY="165.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="161.0" layoutY="206.0" mnemonicParsing="false" onAction="#fallecerButton" prefHeight="41.0" prefWidth="278.0" style="-fx-background-color: #40A578;" text="Dar de baja por fallecimiento" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane fx:id="adopcion" layoutY="100.0" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: #9DDE8B;">
+         <children>
+            <Label layoutX="339.0" layoutY="65.0" text="Nombre:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nombrePersona" layoutX="428.0" layoutY="68.0" />
+            <Label layoutX="340.0" layoutY="14.0" prefHeight="17.0" prefWidth="193.0" text="Datos del adoptante" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="339.0" layoutY="95.0" text="Email:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailPersona" layoutX="428.0" layoutY="98.0" />
+            <Label layoutX="339.0" layoutY="125.0" text="Teléfono:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="TelefonoPersona" layoutX="428.0" layoutY="128.0" />
+            <Label layoutX="340.0" layoutY="155.0" text="DNI:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="DNIPersona" layoutX="429.0" layoutY="158.0" />
+            <Label layoutX="55.0" layoutY="14.0" prefHeight="17.0" prefWidth="193.0" text="Datos del animal" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="63.0" prefHeight="30.0" prefWidth="89.0" text="ID:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="idAnimalAdoptar" layoutX="135.0" layoutY="63.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="95.0" prefHeight="30.0" prefWidth="89.0" text="Nombre:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="nombreAnimalAdoptar" layoutX="135.0" layoutY="95.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="125.0" prefHeight="30.0" prefWidth="89.0" text="Tipo" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="tipoAnimalAdoptar" layoutX="138.0" layoutY="125.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="155.0" prefHeight="30.0" prefWidth="89.0" text="Raza:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="razaAnimalAdoptar" layoutX="138.0" layoutY="155.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="55.0" layoutY="183.0" prefHeight="30.0" prefWidth="89.0" text="Edad:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="edadAnimalAdoptar" layoutX="138.0" layoutY="183.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="52.0" layoutY="213.0" prefHeight="30.0" prefWidth="89.0" text="Peso:" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="pesoAnimalAdoptar" layoutX="135.0" layoutY="213.0" prefHeight="30.0" prefWidth="77.0" text="Example" textFill="#006769">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="ADOPTAR" layoutX="373.0" layoutY="216.0" mnemonicParsing="false" onAction="#adoptarButton" prefHeight="41.0" prefWidth="186.0" style="-fx-background-color: #40A578;" text="ADOPTAR" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Label fx:id="errMess" layoutX="373.0" layoutY="190.0" prefHeight="17.0" prefWidth="186.0" textFill="RED" />
+         </children>
+      </Pane>
+      <Button layoutX="504.0" layoutY="28.0" mnemonicParsing="false" onAction="#volver" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #40A578;" text="Volver" textFill="WHITE" />
+   </children>
+</AnchorPane>

@@ -43,6 +43,15 @@
       </Pane>
       <Pane fx:id="animalsPane" layoutX="154.0" prefHeight="400.0" prefWidth="446.0" style="-fx-background-color: #9DDE8B;">
          <children>
+            <Button fx:id="altaButton" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#DarAlta" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Dar de alta" textFill="WHITE" />
+            <Button fx:id="changeToUsers" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#userPane" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Usuarios" textFill="WHITE" />
+            <Button fx:id="bajaButton" layoutX="301.0" layoutY="64.0" mnemonicParsing="false" onAction="#darBaja" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Dar de baja" textFill="WHITE" />
+            <Button fx:id="ModificarButton" layoutX="158.0" layoutY="64.0" mnemonicParsing="false" onAction="#mofificarAnimal" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Modificar animal" textFill="WHITE" />
+            <Button fx:id="vacunaBoton" layoutX="158.0" layoutY="14.0" mnemonicParsing="false" onAction="#regitroVacunas" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Vacunas" textFill="WHITE" />
+            <Button fx:id="TODOS" layoutX="68.0" layoutY="148.0" mnemonicParsing="false" onAction="#showAllAnimales" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #40A578;" text="TODOS" textFill="WHITE" />
+            <Button fx:id="AVALIABLE" layoutX="176.0" layoutY="148.0" mnemonicParsing="false" onAction="#showAvaliableAnimales" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #40A578;" text="DISPONIBLES" textFill="WHITE" />
+            <Button fx:id="IDOS" layoutX="285.0" layoutY="148.0" mnemonicParsing="false" onAction="#showIDOSAnimales" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #40A578;" text="IDOS" textFill="WHITE" />
+            <Button fx:id="personas" layoutX="301.0" layoutY="14.0" mnemonicParsing="false" onAction="#regitroVacunas" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Adoptantes" textFill="WHITE" />
             <TableView fx:id="tablaAnimales" layoutX="5.0" layoutY="186.0" prefHeight="200.0" prefWidth="436.0" style="-fx-background-color: #E6FF94;">
               <columns>
                 <TableColumn fx:id="idColumn" prefWidth="24.800048828125" text="ID" />
@@ -52,30 +61,32 @@
                   <TableColumn fx:id="ageColumn" prefWidth="31.199951171875" text="AGE" />
                   <TableColumn fx:id="weightColumn" prefWidth="60.0" text="WEIGHT" />
                   <TableColumn fx:id="entryColumn" prefWidth="60.7999267578125" text="ENTRY" />
-                  <TableColumn prefWidth="75.0" text="EXIT" />
+                  <TableColumn fx:id="exitColumn" prefWidth="75.0" text="EXIT" />
               </columns>
             </TableView>
-            <Button fx:id="altaButton" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#DarAlta" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Dar de alta" textFill="WHITE" />
-            <Button fx:id="changeToUsers" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#userPane" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Usuarios" textFill="WHITE" />
-            <Button fx:id="bajaButton" layoutX="301.0" layoutY="64.0" mnemonicParsing="false" onAction="#darBaja" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Dar de baja" textFill="WHITE" />
-            <Button fx:id="ModificarButton" layoutX="158.0" layoutY="64.0" mnemonicParsing="false" onAction="#mofificarAnimal" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Modificar animal" textFill="WHITE" />
-            <Button fx:id="vacunaBoton" layoutX="158.0" layoutY="14.0" mnemonicParsing="false" onAction="#regitroVacunas" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Vacunas" textFill="WHITE" />
-            <Button layoutX="68.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="TODOS" />
-            <Button layoutX="176.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="DISPONIBLES" />
-            <Button layoutX="285.0" layoutY="148.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="94.0" text="IDOS" />
-            <TableView fx:id="tablaAnimalesIDOS" layoutX="5.0" layoutY="187.0" prefHeight="200.0" prefWidth="436.0" style="-fx-background-color: #E6FF94;">
+            <TableView fx:id="tablaAnimalesAvaliable" layoutX="5.0" layoutY="186.0" prefHeight="200.0" prefWidth="436.0" style="-fx-background-color: #E6FF94;">
                <columns>
-                  <TableColumn fx:id="idColumn1" prefWidth="24.800048828125" text="ID" />
-                  <TableColumn fx:id="nameColumn1" prefWidth="68.800048828125" text="NAME" />
-                  <TableColumn fx:id="typeColumn1" prefWidth="48.80006408691406" text="TYPE" />
-                  <TableColumn fx:id="raceColumn1" prefWidth="60.0" text="RACE" />
-                  <TableColumn fx:id="ageColumn1" prefWidth="31.199951171875" text="AGE" />
-                  <TableColumn fx:id="weightColumn1" prefWidth="60.0" text="WEIGHT" />
-                  <TableColumn fx:id="entryColumn1" prefWidth="60.7999267578125" text="ENTRY" />
-                  <TableColumn prefWidth="75.0" text="EXIT" />
+                  <TableColumn fx:id="idColumnAV" prefWidth="24.800048828125" text="ID" />
+                  <TableColumn fx:id="nameColumnAV" prefWidth="68.800048828125" text="NAME" />
+                  <TableColumn fx:id="typeColumnAV" prefWidth="48.80006408691406" text="TYPE" />
+                  <TableColumn fx:id="raceColumnAV" prefWidth="90.39996337890625" text="RACE" />
+                  <TableColumn fx:id="ageColumnAV" prefWidth="40.0" text="AGE" />
+                  <TableColumn fx:id="weightColumnAV" prefWidth="56.0" text="WEIGHT" />
+                  <TableColumn fx:id="entryColumnAV" prefWidth="105.5999755859375" text="ENTRY" />
                </columns>
             </TableView>
-            <Button fx:id="personas" layoutX="301.0" layoutY="14.0" mnemonicParsing="false" onAction="#regitroVacunas" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Adoptantes" textFill="WHITE" />
+            <TableView fx:id="tablaAnimalesIDOS" layoutX="5.0" layoutY="187.0" prefHeight="200.0" prefWidth="436.0" style="-fx-background-color: #E6FF94;">
+               <columns>
+                  <TableColumn fx:id="idColumnIDOS" prefWidth="24.800048828125" text="ID" />
+                  <TableColumn fx:id="nameColumnIDOS" prefWidth="68.800048828125" text="NAME" />
+                  <TableColumn fx:id="typeColumnIDOS" prefWidth="48.80006408691406" text="TYPE" />
+                  <TableColumn fx:id="raceColumnIDOS" prefWidth="60.0" text="RACE" />
+                  <TableColumn fx:id="ageColumnIDOS" prefWidth="31.199951171875" text="AGE" />
+                  <TableColumn fx:id="weightColumnIDOS" prefWidth="60.0" text="WEIGHT" />
+                  <TableColumn fx:id="entryColumnIDOS" prefWidth="60.7999267578125" text="ENTRY" />
+                  <TableColumn fx:id="exitColumnIDOS" prefWidth="75.0" text="EXIT" />
+               </columns>
+            </TableView>
          </children>
       </Pane>
    </children>
