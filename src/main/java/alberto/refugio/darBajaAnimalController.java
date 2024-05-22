@@ -122,23 +122,21 @@ public class darBajaAnimalController {
         fechaActual = sdf.format(todayDate);
 
         fechaEntradaFallecimiento.setText(fechaActual);
-        
-        
-        
-        
 
     }
-    
-    public void frontAdopt(){
+
+    public void frontAdopt() {
         adopcion.toFront();
         adopcionButton.setDisable(true);
         deathButton.setDisable(false);
     }
-public void frontDeath(){
+
+    public void frontDeath() {
         fallecimiento.toFront();
         adopcionButton.setDisable(false);
         deathButton.setDisable(true);
     }
+
     public void fallecerButton() {
 
         int num_adopted = this.checkDeath();
@@ -154,7 +152,7 @@ public void frontDeath(){
 
             Statement stmt = conexion.createStatement();
 
-            String query = "UPDATE animal SET exit_date = " + fechaActual + " WHERE aid=" + animalito.getId() + ";";
+            String query = "UPDATE animal SET exit_date = '" + fechaActual + "' WHERE aid=" + animalito.getId() + ";";
 
             stmt.executeUpdate(query);
 
@@ -261,9 +259,15 @@ public void frontDeath(){
 
     public void adoptarButton() {
 
-        if (DNIPersona.getText() != "" && !DNIPersona.getText().contains(" ")
-                && TelefonoPersona.getText() != "" && emailPersona.getText() != ""
-                && nombrePersona.getText() != "") {
+        if (DNIPersona.getText() == "" || DNIPersona.getText().contains(" ")
+                || TelefonoPersona.getText() == "" || emailPersona.getText() == ""
+                || nombrePersona.getText() == "" || DNIPersona.getText() == null
+                || TelefonoPersona.getText() == null || emailPersona.getText() == null
+                || nombrePersona.getText() == null) {
+
+            errMess.setText("Ningun campo debe estar vacio");
+
+        } else {
 
             int num_adopted = this.checkPerson();
 
@@ -279,7 +283,7 @@ public void frontDeath(){
 
                 Statement stmt = conexion.createStatement();
 
-                String query = "UPDATE animal SET exit_date = " + fechaActual + " WHERE aid=" + animalito.getId() + ";";
+                String query = "UPDATE animal SET exit_date = '" + fechaActual + "' WHERE aid=" + animalito.getId() + ";";
 
                 stmt.executeUpdate(query);
 
@@ -301,14 +305,11 @@ public void frontDeath(){
             } catch (IOException ex) {
                 Logger.getLogger(darBajaAnimalController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        } else {
-            errMess.setText("Ningun campo debe estar vacio");
         }
 
     }
-    
-    public void volver(){
+
+    public void volver() {
         try {
             App.setRoot("secondary");
         } catch (IOException ex) {
