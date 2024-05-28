@@ -42,6 +42,7 @@ public class SecondaryController {
     ArrayList<animal> animales = new ArrayList();
     ArrayList<animal> animalesIDOS = new ArrayList();
     ArrayList<animal> animalesDISPO = new ArrayList();
+    ArrayList<Persona> adoptantes = new ArrayList();
 
     @FXML
     private Button BajaUser;
@@ -60,6 +61,9 @@ public class SecondaryController {
 
     @FXML
     private Button ModificarButton;
+    
+    @FXML
+    private Pane panePersonas;
 
     @FXML
     private Button ModificarUser;
@@ -183,6 +187,24 @@ public class SecondaryController {
 
     @FXML
     private TableColumn<animal, Date> entryColumnAV;
+    
+    @FXML
+    private TableView<Persona> tablaPersonas;
+    
+    @FXML
+    private TableColumn<Persona, String> namePersonaColumm;
+
+    @FXML
+    private TableColumn<Persona, String> emailPersonaColumn;
+
+    @FXML
+    private TableColumn<Persona, Integer> animalesPersonaColumn;
+
+    @FXML
+    private TableColumn<Persona, String> PhonePersonaColumn;
+
+    @FXML
+    private TableColumn<Persona, String> DNIPersonaColumn;
 
     @FXML
     private Label welcomeMessage;
@@ -389,7 +411,7 @@ public class SecondaryController {
         weightColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, Float>("weight"));
         entryColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, Date>("entryingDate"));
 
-        exitColumn.setCellValueFactory(new PropertyValueFactory<animal, Date>("leavingDate"));
+        exitColumnIDOS.setCellValueFactory(new PropertyValueFactory<animal, Date>("leavingDate"));
 
         ObservableList<animal> listaAnimalesIDOS = FXCollections.observableArrayList(animalesIDOS);
 
@@ -548,6 +570,63 @@ public class SecondaryController {
 
         tablaUsers.getSelectionModel().select(0);
     }
+    
+    public void getAllPersonas(){
+        try {
+            usersList.clear();
+            // Using jdbc
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Conection to db
+            String url = "jdbc:mysql://localhost:3307/shelterly";
+            String usuario = "root";
+            String contraseña = "";
+            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery("Select * from persona");
+
+            while (rs.next()) {
+
+                String nombre = rs.getString("nombre");
+                int animals_adopted = rs.getInt("animals_adopted");
+                String email = rs.getString("email");
+                String phone_number = rs.getString("phone_number");
+                String identification = rs.getString("identification");
+                
+                Persona p = new Persona(nombre,email,phone_number,identification,animals_adopted);
+                adoptantes.add(p);
+
+            }
+
+            rs.close();
+            stmt.close();
+            conexion.close();
+        } catch (ClassNotFoundException | SQLException ex) {
+            ex.printStackTrace();
+            // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+        }
+        
+        animalesPersonaColumn.setCellValueFactory(new PropertyValueFactory<Persona, Integer>("num_animales_adoptados"));
+        emailPersonaColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("email"));
+        namePersonaColumm.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));
+        PhonePersonaColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("number"));
+        DNIPersonaColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("ID"));
+        
+        ObservableList<Persona> listaPersonas = FXCollections.observableArrayList(adoptantes);
+        tablaPersonas.setItems(FXCollections.observableArrayList());
+        tablaPersonas.setItems(listaPersonas);
+
+        tablaPersonas.getSelectionModel().select(0);
+        
+        
+        
+        
+        
+        
+        
+        
+    }
 
     public void initialize() {
 
@@ -557,8 +636,10 @@ public class SecondaryController {
         this.getAllAnimalsIDOS();
         this.getAllAnimalsAV();
         this.getAllUsers();
-        this.showAllAnimales();
-
+        this.getAllPersonas();
+        this.showAvaliableAnimales();
+        
+        
         if (u.isRoot) {
             changeToUsers.setDisable(false);
             changeToUsers.setVisible(true);
@@ -721,4 +802,12 @@ public class SecondaryController {
         tablaAnimalesIDOS.setVisible(false);
         tablaAnimalesAvaliable.setVisible(true);
     }
+    
+    public void personaPane(){
+        panePersonas.toFront();
+    }
+    
+    
+    
+    
 }

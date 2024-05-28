@@ -14,7 +14,7 @@
       <TextField fx:id="edad" layoutX="274.0" layoutY="156.0" />
       <Label layoutX="110.0" layoutY="199.0" text="Email" textFill="#006769" />
       <TextField fx:id="email" disable="true" editable="false" layoutX="110.0" layoutY="223.0" />
-      <CheckBox fx:id="root" layoutX="249.0" layoutY="284.0" mnemonicParsing="false" text="CheckBox" textFill="#006769" />
+      <CheckBox fx:id="root" layoutX="249.0" layoutY="284.0" mnemonicParsing="false" text="is Root" textFill="#006769" />
       <Button fx:id="Modificar" layoutX="349.0" layoutY="280.0" mnemonicParsing="false" onAction="#modificar" prefHeight="26.0" prefWidth="83.0" style="-fx-background-color: #40A578;" text="Modificar" textFill="WHITE" />
       <Button fx:id="RESETBUTTON" layoutX="277.0" layoutY="222.0" mnemonicParsing="false" onAction="#reset" prefHeight="26.0" prefWidth="143.0" style="-fx-background-color: #40A578;" text="RESET" textFill="WHITE" />
       <Label layoutX="273.0" layoutY="199.0" text="Resetear Contraseña" textFill="#006769" />

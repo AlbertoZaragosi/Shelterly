@@ -82,11 +82,16 @@ public class RegisterController {
 
             stmt.close();
             conexion.close();
-            panel.toFront();
+            App.setRoot("primary");
             
-        } catch (ClassNotFoundException | SQLException ex) {
+            
+        } catch (ClassNotFoundException | SQLIntegrityConstraintViolationException ex) {
             ex.printStackTrace();
             // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+        }catch(SQLException e){
+            
+        } catch (IOException ex) {
+            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

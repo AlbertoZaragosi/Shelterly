@@ -10,37 +10,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.SecondaryController">
    <children>
-      <Pane fx:id="Main" layoutX="-7.0" prefHeight="400.0" prefWidth="162.0" style="-fx-background-color: #9DDE8B;">
-         <children>
-            <Label layoutX="10.0" layoutY="14.0" prefHeight="60.0" prefWidth="148.0" text="Shelterly" textFill="#006769">
-               <font>
-                  <Font name="Impact" size="38.0" />
-               </font>
-            </Label>
-            <Label fx:id="welcomeMessage" layoutX="18.0" layoutY="84.0" text="Bienvenido: " textFill="#006769" />
-            <Button fx:id="Logout" layoutX="37.0" layoutY="158.0" mnemonicParsing="false" onAction="#Logout" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #EE4E4E; -fx-border-color: #A91D3A; -fx-border-radius: 4; -fx-border-width: 4;" text="Log out">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Button>
-            <Label fx:id="errMess" layoutX="36.0" layoutY="218.0" textFill="RED" />
-         </children>
-      </Pane>
-      <Pane fx:id="usersPane" layoutX="154.0" layoutY="1.0" prefHeight="400.0" prefWidth="446.0" style="-fx-background-color: #9DDE8B;">
-         <children>
-            <TableView fx:id="tablaUsers" layoutX="5.0" layoutY="186.0" prefHeight="200.0" prefWidth="436.0" style="-fx-background-color: #E6FF94;">
-               <columns>
-                  <TableColumn fx:id="emailColumn" prefWidth="154.4000244140625" text="EMAIL" />
-                  <TableColumn fx:id="usernameColumn" minWidth="0.0" prefWidth="124.0" text="NAME" />
-                  <TableColumn fx:id="userageColumn" minWidth="0.0" prefWidth="74.39993286132812" text="AGE" />
-                  <TableColumn fx:id="userrootColumn" prefWidth="82.39993286132812" text="ROOT" />
-               </columns>
-            </TableView>
-            <Button fx:id="darAltaUser" layoutX="14.0" layoutY="139.0" mnemonicParsing="false" onAction="#DarAltaUser" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Dar de alta" textFill="WHITE" />
-            <Button fx:id="ChangeToAnimal" layoutX="158.0" layoutY="14.0" mnemonicParsing="false" onAction="#animalsPane" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Animales" textFill="WHITE" />
-            <Button fx:id="BajaUser" layoutX="301.0" layoutY="139.0" mnemonicParsing="false" onAction="#darBajaUser" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Dar de baja" textFill="WHITE" />
-            <Button fx:id="ModificarUser" layoutX="158.0" layoutY="139.0" mnemonicParsing="false" onAction="#modificarUser" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Modificar user" textFill="WHITE" />
-         </children>
-      </Pane>
       <Pane fx:id="animalsPane" layoutX="154.0" prefHeight="400.0" prefWidth="446.0" style="-fx-background-color: #9DDE8B;">
          <children>
             <Button fx:id="altaButton" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" onAction="#DarAlta" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Dar de alta" textFill="WHITE" />
@@ -51,7 +20,7 @@
             <Button fx:id="TODOS" layoutX="68.0" layoutY="148.0" mnemonicParsing="false" onAction="#showAllAnimales" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #40A578;" text="TODOS" textFill="WHITE" />
             <Button fx:id="AVALIABLE" layoutX="176.0" layoutY="148.0" mnemonicParsing="false" onAction="#showAvaliableAnimales" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #40A578;" text="DISPONIBLES" textFill="WHITE" />
             <Button fx:id="IDOS" layoutX="285.0" layoutY="148.0" mnemonicParsing="false" onAction="#showIDOSAnimales" prefHeight="25.0" prefWidth="94.0" style="-fx-background-color: #40A578;" text="IDOS" textFill="WHITE" />
-            <Button fx:id="personas" layoutX="301.0" layoutY="14.0" mnemonicParsing="false" onAction="#regitroVacunas" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Adoptantes" textFill="WHITE" />
+            <Button fx:id="personas" layoutX="301.0" layoutY="14.0" mnemonicParsing="false" onAction="#personaPane" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Adoptantes" textFill="WHITE" />
             <TableView fx:id="tablaAnimales" layoutX="5.0" layoutY="186.0" prefHeight="200.0" prefWidth="436.0" style="-fx-background-color: #E6FF94;">
               <columns>
                 <TableColumn fx:id="idColumn" prefWidth="24.800048828125" text="ID" />
@@ -85,6 +54,53 @@
                   <TableColumn fx:id="weightColumnIDOS" prefWidth="60.0" text="WEIGHT" />
                   <TableColumn fx:id="entryColumnIDOS" prefWidth="60.7999267578125" text="ENTRY" />
                   <TableColumn fx:id="exitColumnIDOS" prefWidth="75.0" text="EXIT" />
+               </columns>
+            </TableView>
+         </children>
+      </Pane>
+      <Pane fx:id="usersPane" layoutX="154.0" layoutY="1.0" prefHeight="400.0" prefWidth="446.0" style="-fx-background-color: #9DDE8B;">
+         <children>
+            <TableView fx:id="tablaUsers" layoutX="5.0" layoutY="186.0" prefHeight="200.0" prefWidth="436.0" style="-fx-background-color: #E6FF94;">
+               <columns>
+                  <TableColumn fx:id="emailColumn" prefWidth="154.4000244140625" text="EMAIL" />
+                  <TableColumn fx:id="usernameColumn" minWidth="0.0" prefWidth="124.0" text="NAME" />
+                  <TableColumn fx:id="userageColumn" minWidth="0.0" prefWidth="74.39993286132812" text="AGE" />
+                  <TableColumn fx:id="userrootColumn" prefWidth="82.39993286132812" text="ROOT" />
+               </columns>
+            </TableView>
+            <Button fx:id="darAltaUser" layoutX="14.0" layoutY="139.0" mnemonicParsing="false" onAction="#DarAltaUser" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Dar de alta" textFill="WHITE" />
+            <Button fx:id="ChangeToAnimal" layoutX="158.0" layoutY="14.0" mnemonicParsing="false" onAction="#animalsPane" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Animales" textFill="WHITE" />
+            <Button fx:id="BajaUser" layoutX="301.0" layoutY="139.0" mnemonicParsing="false" onAction="#darBajaUser" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Dar de baja" textFill="WHITE" />
+            <Button fx:id="ModificarUser" layoutX="158.0" layoutY="139.0" mnemonicParsing="false" onAction="#modificarUser" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Modificar user" textFill="WHITE" />
+         </children>
+      </Pane>
+      <Pane fx:id="Main" layoutX="-7.0" prefHeight="400.0" prefWidth="162.0" style="-fx-background-color: #9DDE8B;">
+         <children>
+            <Label layoutX="10.0" layoutY="14.0" prefHeight="60.0" prefWidth="148.0" text="Shelterly" textFill="#006769">
+               <font>
+                  <Font name="Impact" size="38.0" />
+               </font>
+            </Label>
+            <Label fx:id="welcomeMessage" layoutX="18.0" layoutY="84.0" text="Bienvenido: " textFill="#006769" />
+            <Button fx:id="Logout" layoutX="37.0" layoutY="158.0" mnemonicParsing="false" onAction="#Logout" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #EE4E4E; -fx-border-color: #A91D3A; -fx-border-radius: 4; -fx-border-width: 4;" text="Log out">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Label fx:id="errMess" layoutX="10.0" layoutY="209.0" prefHeight="25.0" prefWidth="148.0" textFill="RED" textOverrun="CLIP" />
+         </children>
+      </Pane>
+      <Pane fx:id="panePersonas" layoutX="147.0" prefHeight="400.0" prefWidth="453.0" style="-fx-background-color: #9DDE8B;">
+         <children>
+            <Button layoutX="161.0" layoutY="24.0" mnemonicParsing="false" onAction="#animalsPane" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Animales" textFill="WHITE" />
+            <Button fx:id="BajaUser1" layoutX="292.0" layoutY="149.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="131.0" style="-fx-background-color: #40A578;" text="Modificar" textFill="WHITE" />
+            <Button fx:id="ModificarUser1" layoutX="70.0" layoutY="149.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="182.0" style="-fx-background-color: #40A578;" text="Ver animales adoptados" textFill="WHITE" />
+            <TableView fx:id="tablaPersonas" layoutX="14.0" layoutY="200.0" prefHeight="182.0" prefWidth="430.0" style="-fx-background-color: #E6FF94;">
+               <columns>
+                  <TableColumn fx:id="namePersonaColumm" prefWidth="75.20001220703125" text="NAME" />
+                  <TableColumn fx:id="emailPersonaColumn" minWidth="0.0" prefWidth="99.20001220703125" text="EMAIL" />
+                  <TableColumn fx:id="PhonePersonaColumn" minWidth="0.0" prefWidth="89.60003662109375" text="PHONE" />
+                  <TableColumn fx:id="DNIPersonaColumn" prefWidth="83.99996948242188" text="DNI" />
+                  <TableColumn fx:id="animalesPersonaColumn" prefWidth="77.5999755859375" text="ANIMALES" />
                </columns>
             </TableView>
          </children>

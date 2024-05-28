@@ -94,6 +94,9 @@ public class darBajaAnimalController {
 
     @FXML
     private Label fechaEntradaFallecimiento;
+    
+    @FXML
+    private Label fechaFallecimiento;
 
     @FXML
     private Label errMess;
@@ -121,7 +124,11 @@ public class darBajaAnimalController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         fechaActual = sdf.format(todayDate);
 
-        fechaEntradaFallecimiento.setText(fechaActual);
+        fechaFallecimiento.setText(fechaActual);
+        
+        adopcionButton.setDisable(true);
+        adopcion.toFront();
+        
 
     }
 

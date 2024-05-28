@@ -154,14 +154,7 @@ public class PrimaryController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
             Parent root = loader.load();
 
-            // Crear un nuevo Stage para la ventana de crear cuenta
-            Stage createAccountStage = new Stage();
-            createAccountStage.initModality(Modality.APPLICATION_MODAL); // Hacer que la ventana sea modal
-            createAccountStage.setTitle("Crear cuenta");
-            createAccountStage.setScene(new Scene(root));
-
-            // Mostrar la ventana de crear cuenta
-            createAccountStage.showAndWait(); // Espera hasta que se cierre la ventana de crear cuenta
+            App.setRoot("register");
         } catch (Exception e) {
             e.printStackTrace();
         }
