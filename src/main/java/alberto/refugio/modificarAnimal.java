@@ -67,7 +67,7 @@ public class modificarAnimal {
         listaAnimales.add("cat");
         listaAnimales.add("bird");
         listaAnimales.add("reptil");
-        listaAnimales.add("roudent");
+        listaAnimales.add("rodent");
 
         typeComboBox.setItems(listaAnimales);
         typeComboBox.getSelectionModel().select(a.getType());
@@ -98,7 +98,7 @@ public class modificarAnimal {
             case "reptil":
                 listaRazas.addAll("Boa constrictor", "Pitón real", "Cobra", "Serpiente de maíz", "Serpiente del maíz", "Serpiente rey de California", "Lagarto verde", "Lagarto de agua", "Dragón barbudo", "Lagarto monitor", "Iguana verde", "Lagarto skink", "Tortuga de orejas rojas", "Tortuga sulcata", "Tortuga rusa", "Tortuga mora", "Tortuga leopardo", "Tortuga de caja", "Cocodrilo del Nilo", "Caimán de anteojos", "Cocodrilo americano", "Caimán negro", "Cocodrilo de agua salada", "Caimán de Schneider", "Geckos", "Camaleones", "Tuátaras", "Anolis", "Serpientes de cristal", "Serpientes de coral");
                 break;
-            case "roudent":
+            case "rodent":
                 listaRazas.addAll("Hamster sirio", "Hamster enano ruso", "Hamster dorado", "Cobaya de pelo corto", "Cobaya de pelo largo", "Ratón doméstico", "Rata dumbo", "Jerbo de Mongolia", "Conejillo de Indias", "Degu", "Hámster roborowski", "Rata siamesa", "Jerbo pigmeo egipcio", "Hámster chino", "Chinchilla", "Rata almizclera", "Rata de laboratorio", "Hámster de Campbell", "Hámster de Djungarian", "Hámster blanco de invierno", "Hámster siberiano", "Hámster de Campbell enano");
                 break;
 

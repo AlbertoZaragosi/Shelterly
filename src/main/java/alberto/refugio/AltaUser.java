@@ -103,7 +103,7 @@ public class AltaUser {
             Statement stmt = conexion.createStatement();
             boolean isRoot = root.isSelected();
 
-            String query = "insert into users values('" + name.getText() + "','" + mail.getText() + "'," + isRoot + ",'" + encryptPassword(password.getText()) + "');";
+            String query = "insert into users (uname,uemail,isRoot,upassw) values('" + name.getText() + "','" + mail.getText() + "'," + isRoot + ",'" + encryptPassword(password.getText()) + "');";
 
             stmt.executeUpdate(query);
 

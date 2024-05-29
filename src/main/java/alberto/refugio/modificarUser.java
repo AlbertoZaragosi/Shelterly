@@ -78,7 +78,7 @@ public class modificarUser {
 
                 Statement stmt = conexion.createStatement();
 
-                String query = "UPDATE users set uname ='" + nombre.getText() + "' , isRoot = " + root.isSelected() + " , WHERE uemail = '" + email.getText() + "';";
+                String query = "UPDATE users set uname ='" + nombre.getText() + "' , isRoot = " + root.isSelected() + " WHERE uemail = '" + email.getText() + "';";
                 stmt.executeUpdate(query);
                 stmt.close();
                 conexion.close();
