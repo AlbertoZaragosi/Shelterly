@@ -47,7 +47,10 @@
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="messageError" layoutX="187.0" layoutY="168.0" prefHeight="18.0" prefWidth="576.0" textAlignment="CENTER" textFill="#ff2d2d" />
+      <Label fx:id="messageError" layoutX="285.0" layoutY="162.0" prefHeight="30.0" prefWidth="368.0" textAlignment="CENTER" textFill="#ff2d2d">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
       <Label fx:id="PasswordLabel" layoutX="306.0" layoutY="374.0" prefHeight="18.0" prefWidth="547.0">
          <font>
             <Font name="System Bold" size="12.0" />
