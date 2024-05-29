@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -35,7 +36,7 @@ public class AltaAnimal {
 
     @FXML
     private TextField age;
-    
+
     @FXML
     private Button Volver;
 
@@ -51,8 +52,11 @@ public class AltaAnimal {
     @FXML
     private TextField weight;
 
-    public void initialize() {
+    @FXML
+    private Label errMess;
 
+    public void initialize() {
+        errMess.setText("");
         ObservableList<String> listaAnimales = FXCollections.observableArrayList();
         listaAnimales.add("dog");
         listaAnimales.add("cat");
@@ -102,23 +106,34 @@ public class AltaAnimal {
     }
 
     public void darAlta() throws IOException {
-        String nombre = name.getText();
-        int edad = Integer.parseInt(age.getText());
-        float peso = Float.parseFloat(weight.getText());
-        String tipo = typeComboBox.getSelectionModel().getSelectedItem();
-        String raza = RaceComboBox.getSelectionModel().getSelectedItem();
- 
-        Date todayDate = Date.valueOf(LocalDate.now());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        String fechaActual = sdf.format(todayDate);
-        
-        
-        this.addAnimal(nombre, edad, peso, tipo, raza, fechaActual);
+        if (!name.getText().equalsIgnoreCase("") && !name.getText().equalsIgnoreCase(" ")
+                && !age.getText().equalsIgnoreCase("") && !age.getText().equalsIgnoreCase(" ")
+                && !weight.getText().equalsIgnoreCase("") && !weight.getText().equalsIgnoreCase(" ")) {
+            try {
+                String nombre = name.getText();
+                int edad = Integer.parseInt(age.getText());
+                float peso = Float.parseFloat(weight.getText());
+                String tipo = typeComboBox.getSelectionModel().getSelectedItem();
+                String raza = RaceComboBox.getSelectionModel().getSelectedItem();
 
-        App.setRoot("secondary");
+                Date todayDate = Date.valueOf(LocalDate.now());
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                String fechaActual = sdf.format(todayDate);
+
+                this.addAnimal(nombre, edad, peso, tipo, raza, fechaActual);
+
+                App.setRoot("secondary");
+            } catch (NumberFormatException e) {
+                errMess.setText("Edad y peso deben ser numericos");
+            }
+
+        } else {
+            errMess.setText("Ningun campo debe estar vacio");
+        }
+
     }
-    
-    public void addAnimal(String nom,int edad,float peso,String tipo,String raza,String fecha){
+
+    public void addAnimal(String nom, int edad, float peso, String tipo, String raza, String fecha) {
         try {
             // Carga el controlador JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -131,10 +146,9 @@ public class AltaAnimal {
 
             Statement stmt = conexion.createStatement();
 
-            String query = "insert into animal (aname,atype,arace,aage,aweight,entry_date) values('"+nom+"','"+tipo+"','"+raza+"',"+edad+","+peso+",'"+fecha+"');";
-            
+            String query = "insert into animal (aname,atype,arace,aage,aweight,entry_date) values('" + nom + "','" + tipo + "','" + raza + "'," + edad + "," + peso + ",'" + fecha + "');";
+
             stmt.executeUpdate(query);
-            
 
             stmt.close();
             conexion.close();
@@ -143,11 +157,10 @@ public class AltaAnimal {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
         }
-            
+
     }
-    
-    
-    public void volver(){
+
+    public void volver() {
         try {
             App.setRoot("secondary");
         } catch (IOException ex) {

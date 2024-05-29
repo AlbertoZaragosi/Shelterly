@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -34,6 +35,9 @@ public class addVacunaController {
     
     @FXML
     private Label nombre;
+    
+    @FXML
+    private Label errMess;
 
     @FXML
     private Button añadir;
@@ -94,6 +98,7 @@ public class addVacunaController {
     }
 
     public void initialize() {
+        errMess.setText("");
         nombre.setText("vacunas para "+animal.getName());
         this.fillVacunas();
         ObservableList<Vacuna> listaAnimales = FXCollections.observableArrayList(vacunasList);
@@ -128,7 +133,9 @@ public class addVacunaController {
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(addVacunaController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
+        } catch(SQLIntegrityConstraintViolationException e){
+            errMess.setText("Ya has puesto esa vacuna hoy!");
+        }catch (SQLException ex) {
             Logger.getLogger(addVacunaController.class.getName()).log(Level.SEVERE, null, ex);
         }
 

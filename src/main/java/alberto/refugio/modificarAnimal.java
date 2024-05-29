@@ -21,6 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 /**
@@ -53,7 +54,11 @@ public class modificarAnimal {
     private TextField weight;
 
     @FXML
+    private Label errMess;
+
+    @FXML
     public void initialize() {
+        errMess.setText("");
         name.setText(a.getName());
         age.setText("" + a.getAge());
         weight.setText("" + a.getWeight());
@@ -113,36 +118,45 @@ public class modificarAnimal {
     }
 
     public void modificar() {
-        String nombre = name.getText();
-        int edad = Integer.parseInt(age.getText());
-        float peso = Float.parseFloat(weight.getText());
-        String tipo = typeComboBox.getSelectionModel().getSelectedItem();
-        String raza = RaceComboBox.getSelectionModel().getSelectedItem();
 
-        try {
-            // Carga el controlador JDBC
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        if (!name.getText().equalsIgnoreCase("") && !name.getText().equalsIgnoreCase(" ")
+                && !age.getText().equalsIgnoreCase("") && !age.getText().equalsIgnoreCase(" ")
+                && !weight.getText().equalsIgnoreCase("") && !weight.getText().equalsIgnoreCase(" ")) {
 
-            // Establece la conexión con la base de datos
-            String url = "jdbc:mysql://localhost:3307/shelterly";
-            String usuario = "root";
-            String contraseña = "";
-            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+            try {
+                String nombre = name.getText();
+                int edad = Integer.parseInt(age.getText());
+                float peso = Float.parseFloat(weight.getText());
+                String tipo = typeComboBox.getSelectionModel().getSelectedItem();
+                String raza = RaceComboBox.getSelectionModel().getSelectedItem();
+                // Carga el controlador JDBC
+                Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Statement stmt = conexion.createStatement();
+                // Establece la conexión con la base de datos
+                String url = "jdbc:mysql://localhost:3307/shelterly";
+                String usuario = "root";
+                String contraseña = "";
+                Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
 
-            String query = "UPDATE animal set aname = '" + nombre + "', atype='" + tipo + "' , arace='" + raza + "' ,aage=" + edad + ", aweight=" + peso + " where aid='"+a.getId()+"';";
-            stmt.executeUpdate(query);
+                Statement stmt = conexion.createStatement();
 
-            stmt.close();
-            conexion.close();
-            App.setRoot("secondary");
-        } catch (SQLException ex) {
-            Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(modificarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+                String query = "UPDATE animal set aname = '" + nombre + "', atype='" + tipo + "' , arace='" + raza + "' ,aage=" + edad + ", aweight=" + peso + " where aid='" + a.getId() + "';";
+                stmt.executeUpdate(query);
+
+                stmt.close();
+                conexion.close();
+                App.setRoot("secondary");
+            } catch (SQLException ex) {
+                Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(modificarAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            }catch(NumberFormatException e){
+                errMess.setText("Edad y peso deben ser numericos"); 
+            }
+        } else {
+            errMess.setText("Ningun campo debe estar vacio");
         }
 
     }

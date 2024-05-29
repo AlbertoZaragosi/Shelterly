@@ -61,7 +61,7 @@ public class SecondaryController {
 
     @FXML
     private Button ModificarButton;
-    
+
     @FXML
     private Pane panePersonas;
 
@@ -187,10 +187,10 @@ public class SecondaryController {
 
     @FXML
     private TableColumn<animal, Date> entryColumnAV;
-    
+
     @FXML
     private TableView<Persona> tablaPersonas;
-    
+
     @FXML
     private TableColumn<Persona, String> namePersonaColumm;
 
@@ -542,11 +542,11 @@ public class SecondaryController {
             while (rs.next()) {
 
                 String uname = rs.getString("uname");
-                int uage = rs.getInt("uage");
+                //int uage = rs.getInt("uage");
                 String uemail = rs.getString("uemail");
                 boolean uRoot = rs.getBoolean("isRoot");
                 String upass = rs.getString("upassw");
-                User u = new User(uname, uemail, uRoot, uage, upass);
+                User u = new User(uname, uemail, uRoot, upass);
                 usersList.add(u);
 
             }
@@ -559,7 +559,7 @@ public class SecondaryController {
             // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
         }
 
-        userageColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("age"));
+        //userageColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("age"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<User, String>("email"));
         usernameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
         userrootColumn.setCellValueFactory(new PropertyValueFactory<User, Boolean>("isRoot"));
@@ -570,8 +570,8 @@ public class SecondaryController {
 
         tablaUsers.getSelectionModel().select(0);
     }
-    
-    public void getAllPersonas(){
+
+    public void getAllPersonas() {
         try {
             usersList.clear();
             // Using jdbc
@@ -593,8 +593,8 @@ public class SecondaryController {
                 String email = rs.getString("email");
                 String phone_number = rs.getString("phone_number");
                 String identification = rs.getString("identification");
-                
-                Persona p = new Persona(nombre,email,phone_number,identification,animals_adopted);
+
+                Persona p = new Persona(nombre, email, phone_number, identification, animals_adopted);
                 adoptantes.add(p);
 
             }
@@ -606,31 +606,25 @@ public class SecondaryController {
             ex.printStackTrace();
             // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
         }
-        
+
         animalesPersonaColumn.setCellValueFactory(new PropertyValueFactory<Persona, Integer>("num_animales_adoptados"));
         emailPersonaColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("email"));
         namePersonaColumm.setCellValueFactory(new PropertyValueFactory<Persona, String>("nombre"));
         PhonePersonaColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("number"));
         DNIPersonaColumn.setCellValueFactory(new PropertyValueFactory<Persona, String>("ID"));
-        
+
         ObservableList<Persona> listaPersonas = FXCollections.observableArrayList(adoptantes);
         tablaPersonas.setItems(FXCollections.observableArrayList());
         tablaPersonas.setItems(listaPersonas);
 
         tablaPersonas.getSelectionModel().select(0);
-        
-        
-        
-        
-        
-        
-        
-        
+
     }
 
     public void initialize() {
 
         //System.out.println(u.toString());
+        errMess.setText("");
         welcomeMessage.setText("Bienvenido: " + u.getName());
         this.getAllAnimals();
         this.getAllAnimalsIDOS();
@@ -638,8 +632,7 @@ public class SecondaryController {
         this.getAllUsers();
         this.getAllPersonas();
         this.showAvaliableAnimales();
-        
-        
+
         if (u.isRoot) {
             changeToUsers.setDisable(false);
             changeToUsers.setVisible(true);
@@ -673,18 +666,21 @@ public class SecondaryController {
         try {
             if (tablaAnimales.isVisible()) {
                 darBajaAnimalController.animalito = tablaAnimales.getSelectionModel().getSelectedItem();
-
+                App.setRoot("darBajaAnimal");
+                this.getAllAnimals();
+                this.getAllAnimalsAV();
+                this.getAllAnimalsIDOS();
             } else if (tablaAnimalesAvaliable.isVisible()) {
                 darBajaAnimalController.animalito = tablaAnimalesAvaliable.getSelectionModel().getSelectedItem();
-
+                App.setRoot("darBajaAnimal");
+                this.getAllAnimals();
+                this.getAllAnimalsAV();
+                this.getAllAnimalsIDOS();
             } else if (tablaAnimalesIDOS.isVisible()) {
-                darBajaAnimalController.animalito = tablaAnimalesIDOS.getSelectionModel().getSelectedItem();
+                
 
             }
-            App.setRoot("darBajaAnimal");
-            this.getAllAnimals();
-            this.getAllAnimalsAV();
-            this.getAllAnimalsIDOS();
+
         } catch (IOException ex) {
             Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -755,21 +751,55 @@ public class SecondaryController {
     }
 
     public void mofificarAnimal() {
-        try {
-            modificarAnimal.a = tablaAnimales.getSelectionModel().getSelectedItem();
-            App.setRoot("modificarAnimal");
-
-        } catch (Exception e) {
+        if (tablaAnimales.isVisible()) {
+            try {
+                modificarAnimal.a = tablaAnimales.getSelectionModel().getSelectedItem();
+                App.setRoot("modificarAnimal");
+            } catch (IOException ex) {
+                Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (tablaAnimalesIDOS.isVisible()) {
+            try {
+                modificarAnimal.a = tablaAnimalesIDOS.getSelectionModel().getSelectedItem();
+                App.setRoot("modificarAnimal");
+            } catch (IOException ex) {
+                Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (tablaAnimalesAvaliable.isVisible()) {
+            try {
+                modificarAnimal.a = tablaAnimalesAvaliable.getSelectionModel().getSelectedItem();
+                App.setRoot("modificarAnimal");
+            } catch (IOException ex) {
+                Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
     public void regitroVacunas() {
-        try {
-            RegistroVacunasController.a = tablaAnimales.getSelectionModel().getSelectedItem();
-            App.setRoot("registroVacunas");
-        } catch (IOException ex) {
-            Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (tablaAnimales.isVisible()) {
+            try {
+                RegistroVacunasController.a = tablaAnimales.getSelectionModel().getSelectedItem();
+                App.setRoot("registroVacunas");
+            } catch (IOException ex) {
+                Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (tablaAnimalesIDOS.isVisible()) {
+            try {
+                RegistroVacunasController.a = tablaAnimalesIDOS.getSelectionModel().getSelectedItem();
+                App.setRoot("registroVacunas");
+            } catch (IOException ex) {
+                Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (tablaAnimalesAvaliable.isVisible()) {
+            try {
+                RegistroVacunasController.a = tablaAnimalesAvaliable.getSelectionModel().getSelectedItem();
+                App.setRoot("registroVacunas");
+            } catch (IOException ex) {
+                Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
+
     }
 
     public void showAllAnimales() {
@@ -802,12 +832,27 @@ public class SecondaryController {
         tablaAnimalesIDOS.setVisible(false);
         tablaAnimalesAvaliable.setVisible(true);
     }
-    
-    public void personaPane(){
+
+    public void personaPane() {
         panePersonas.toFront();
     }
+
+    public void infoPersona() {
+        try {
+            AnimalesDePersonaController.p = tablaPersonas.getSelectionModel().getSelectedItem();
+            App.setRoot("PersonaAnimal");
+        } catch (IOException ex) {
+            Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
-    
-    
-    
+    public void modificarAdoptante(){
+        try {
+            modificarAdoptante.p = tablaPersonas.getSelectionModel().getSelectedItem();
+            App.setRoot("modificarPersona");
+        } catch (IOException ex) {
+            Logger.getLogger(SecondaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
 }

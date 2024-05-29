@@ -34,12 +34,9 @@ public class modificarUser {
 
     @FXML
     private Button RESETBUTTON;
-    
-    @FXML
-    private Button Volver;
 
     @FXML
-    private TextField edad;
+    private Button Volver;
 
     @FXML
     private TextField email;
@@ -54,8 +51,9 @@ public class modificarUser {
 
     @FXML
     public void initialize() {
+        errMess.setText("");
         nombre.setText(u.getName());
-        edad.setText(""+u.getAge());
+        //edad.setText(""+u.getAge());
         if (u.isRoot) {
             root.setSelected(true);
         } else {
@@ -63,32 +61,40 @@ public class modificarUser {
         }
         email.setText(u.getEmail());
     }
-    
-    public void modificar(){
-        try {
-            // Carga el controlador JDBC
-            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Establece la conexión con la base de datos
-            String url = "jdbc:mysql://localhost:3307/shelterly";
-            String usuario = "root";
-            String contraseña = "";
-            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+    public void modificar() {
 
-            Statement stmt = conexion.createStatement();
+        if (!nombre.getText().equalsIgnoreCase("") && !nombre.getText().equalsIgnoreCase(" ")
+                && !email.getText().equalsIgnoreCase("") && !email.getText().equalsIgnoreCase(" ")) {
+            try {
+                // Carga el controlador JDBC
+                Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String query = "UPDATE users set uname ='"+nombre.getText()+"' , isRoot = "+root.isSelected()+" , uage = "+Integer.parseInt(edad.getText())+" WHERE uemail = '"+email.getText()+"';";
-            stmt.executeUpdate(query);
-            stmt.close();
-            conexion.close();
-            App.setRoot("Secondary");
-        } catch (ClassNotFoundException | SQLException ex) {
-            ex.printStackTrace();
-            // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
-        } catch (IOException ex) {
-            Logger.getLogger(modificarUser.class.getName()).log(Level.SEVERE, null, ex);
+                // Establece la conexión con la base de datos
+                String url = "jdbc:mysql://localhost:3307/shelterly";
+                String usuario = "root";
+                String contraseña = "";
+                Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+
+                Statement stmt = conexion.createStatement();
+
+                String query = "UPDATE users set uname ='" + nombre.getText() + "' , isRoot = " + root.isSelected() + " , WHERE uemail = '" + email.getText() + "';";
+                stmt.executeUpdate(query);
+                stmt.close();
+                conexion.close();
+                App.setRoot("Secondary");
+            } catch (ClassNotFoundException | SQLException ex) {
+                ex.printStackTrace();
+                // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+            } catch (IOException ex) {
+                Logger.getLogger(modificarUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            errMess.setText("Ningun campo debe estar vacio");
         }
+
     }
+
     public static String encryptPassword(String password) {
         try {
             // Crear un objeto MessageDigest para SHA-256
@@ -111,9 +117,8 @@ public class modificarUser {
             return null;
         }
     }
-    
-    
-    public void reset(){
+
+    public void reset() {
         try {
             // Carga el controlador JDBC
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -126,29 +131,25 @@ public class modificarUser {
 
             Statement stmt = conexion.createStatement();
 
-            String query = "UPDATE users set upassw ='"+encryptPassword("1234")+"' WHERE uemail = '"+email.getText()+"';";
+            String query = "UPDATE users set upassw ='" + encryptPassword("1234") + "' WHERE uemail = '" + email.getText() + "';";
             stmt.execute(query);
             stmt.close();
             conexion.close();
-            
+
             errMess.setText("CONTRASEÑA RESETADA");
-            
+
         } catch (ClassNotFoundException | SQLException ex) {
             ex.printStackTrace();
             // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
         }
     }
-    
-    public void volver(){
+
+    public void volver() {
         try {
             App.setRoot("secondary");
         } catch (IOException ex) {
             Logger.getLogger(modificarUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
-    
 
 }

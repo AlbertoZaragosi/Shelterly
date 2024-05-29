@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="901.0" style="-fx-background-color: #9DDE8B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.modificarUser">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="901.0" style="-fx-background-color: #9DDE8B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.modificarAdoptante">
    <children>
       <Label layoutX="134.0" layoutY="169.0" text="Nombre" textFill="#006769">
          <font>
@@ -17,27 +16,27 @@
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <Label layoutX="508.0" layoutY="169.0" text="Email" textFill="#006769">
+      <Label layoutX="510.0" layoutY="254.0" text="animales adoptados:" textFill="#006769">
          <font>
             <Font size="20.0" />
          </font></Label>
-      <TextField fx:id="email" disable="true" editable="false" layoutX="508.0" layoutY="197.0">
+      <TextField fx:id="anidop" disable="true" layoutX="510.0" layoutY="283.0">
          <font>
             <Font size="20.0" />
          </font></TextField>
-      <CheckBox fx:id="root" layoutX="507.0" layoutY="289.0" mnemonicParsing="false" text="is Root" textFill="#006769">
+      <Label layoutX="508.0" layoutY="169.0" text="DNI:" textFill="#006769">
          <font>
             <Font size="20.0" />
-         </font></CheckBox>
+         </font></Label>
+      <TextField fx:id="id" disable="true" editable="false" layoutX="508.0" layoutY="197.0">
+         <font>
+            <Font size="20.0" />
+         </font></TextField>
       <Button fx:id="Modificar" layoutX="657.0" layoutY="370.0" mnemonicParsing="false" onAction="#modificar" prefHeight="57.0" prefWidth="206.0" style="-fx-background-color: #40A578;" text="Modificar" textFill="WHITE">
          <font>
             <Font size="20.0" />
          </font></Button>
-      <Button fx:id="RESETBUTTON" layoutX="134.0" layoutY="283.0" mnemonicParsing="false" onAction="#reset" prefHeight="38.0" prefWidth="270.0" style="-fx-background-color: #40A578;" text="RESET" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font></Button>
-      <Label layoutX="134.0" layoutY="254.0" text="Resetear Contraseña" textFill="#006769">
+      <Label layoutX="134.0" layoutY="254.0" text="Teléfono:" textFill="#006769">
          <font>
             <Font size="20.0" />
          </font></Label>
@@ -49,5 +48,20 @@
          <font>
             <Font size="20.0" />
          </font></Button>
+      <TextField fx:id="tel" layoutX="134.0" layoutY="283.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="134.0" layoutY="341.0" text="Email:" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="ema" layoutX="134.0" layoutY="370.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>

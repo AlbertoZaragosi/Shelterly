@@ -21,7 +21,7 @@ public class PrimaryController {
 
     @FXML
     private Label messageError;
-    
+
     @FXML
     private Label PasswordLabel;
 
@@ -99,60 +99,63 @@ public class PrimaryController {
     }
 
     public void Login() {
-        try {
-            // Using jdbc
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        if (!userMail.getText().equalsIgnoreCase("") && !userMail.getText().equalsIgnoreCase(" ") && 
+                !userPassw.getText().equalsIgnoreCase("") && !userPassw.getText().equalsIgnoreCase(" ")) {
+            try {
+                // Using jdbc
+                Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Conection to db
-            String url = "jdbc:mysql://localhost:3307/shelterly";
-            String usuario = "root";
-            String contraseña = "";
-            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+                // Conection to db
+                String url = "jdbc:mysql://localhost:3307/shelterly";
+                String usuario = "root";
+                String contraseña = "";
+                Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
 
-            Statement stmt = conexion.createStatement();
+                Statement stmt = conexion.createStatement();
 
-            //Create the user
-            User u1 = new User(this.userMail.getText(), encryptPassword(this.userPassw.getText()));
+                //Create the user
+                User u1 = new User(this.userMail.getText(), encryptPassword(this.userPassw.getText()));
 
-            //Query
-            ResultSet rs = stmt.executeQuery("Select * from users where uemail='" + u1.email + "';");
+                //Query
+                ResultSet rs = stmt.executeQuery("Select * from users where uemail='" + u1.email + "';");
 
-            if (rs.next()) {
-                String name = rs.getString("uname");
-                String email = rs.getString("uemail");
-                boolean isRoot = rs.getBoolean("isRoot");
-                int age = rs.getInt("uage");
-                String passw = rs.getString("upassw");
-                if (encryptPassword(this.userPassw.getText()).equals(passw)) {
-                    u1 = new User(name, email, isRoot, age, passw);
-                    SecondaryController.u = u1;
-                    App.setRoot("secondary");
+                if (rs.next()) {
+                    String name = rs.getString("uname");
+                    String email = rs.getString("uemail");
+                    boolean isRoot = rs.getBoolean("isRoot");
+                    //int age = rs.getInt("uage");
+                    String passw = rs.getString("upassw");
+                    if (encryptPassword(this.userPassw.getText()).equals(passw)) {
+                        u1 = new User(name, email, isRoot, passw);
+                        SecondaryController.u = u1;
+                        App.setRoot("secondary");
+
+                    } else {
+                        messageError.setText("Incorrect password");
+                    }
 
                 } else {
-                    messageError.setText("Incorrect password");
+                    messageError.setText("That user doesn't exists");
                 }
 
-            } else {
-                messageError.setText("That user doesn't exists");
+                rs.close();
+                stmt.close();
+                conexion.close();
+            } catch (ClassNotFoundException | SQLException ex) {
+                ex.printStackTrace();
+                // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+            } catch (IOException ex) {
+                Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-            rs.close();
-            stmt.close();
-            conexion.close();
-        } catch (ClassNotFoundException | SQLException ex) {
-            ex.printStackTrace();
-            // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
-        } catch (IOException ex) {
-            Logger.getLogger(PrimaryController.class.getName()).log(Level.SEVERE, null, ex);
+        }else{
+            messageError.setText("Fields can't be empty");
         }
+            
 
     }
 
     public void openCreateAccountWindow() {
         try {
-            // Cargar la escena de crear cuenta desde el archivo FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
-            Parent root = loader.load();
 
             App.setRoot("register");
         } catch (Exception e) {
@@ -167,8 +170,8 @@ public class PrimaryController {
             PasswordLabel.setVisible(true);
         }
     }
-    
-    public void fillLabel(){
+
+    public void fillLabel() {
         PasswordLabel.setText(userPassw.getText());
     }
 

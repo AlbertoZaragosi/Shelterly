@@ -94,7 +94,7 @@ public class darBajaAnimalController {
 
     @FXML
     private Label fechaEntradaFallecimiento;
-    
+
     @FXML
     private Label fechaFallecimiento;
 
@@ -125,10 +125,9 @@ public class darBajaAnimalController {
         fechaActual = sdf.format(todayDate);
 
         fechaFallecimiento.setText(fechaActual);
-        
+
         adopcionButton.setDisable(true);
         adopcion.toFront();
-        
 
     }
 
@@ -184,50 +183,57 @@ public class darBajaAnimalController {
     }
 
     public int checkPerson() {
-        try {
-            // Carga el controlador JDBC
-            Class.forName("com.mysql.cj.jdbc.Driver");
+        if (!DNIPersona.getText().equalsIgnoreCase("") && !DNIPersona.getText().equalsIgnoreCase(" ")) {
+            try {
+                // Carga el controlador JDBC
+                Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Establece la conexión con la base de datos
-            String url = "jdbc:mysql://localhost:3307/shelterly";
-            String usuario = "root";
-            String contraseña = "";
-            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+                // Establece la conexión con la base de datos
+                String url = "jdbc:mysql://localhost:3307/shelterly";
+                String usuario = "root";
+                String contraseña = "";
+                Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
 
-            Statement stmt = conexion.createStatement();
+                Statement stmt = conexion.createStatement();
 
-            String query = "Select * from persona where identification = '" + DNIPersona.getText() + "';";
-            ResultSet rs = stmt.executeQuery(query);
-            boolean existe = rs.next();
+                String query = "Select * from persona where identification = '" + DNIPersona.getText() + "';";
+                ResultSet rs = stmt.executeQuery(query);
+                boolean existe = rs.next();
 
-            if (!existe) {
-                String id = DNIPersona.getText();
-                String name = nombrePersona.getText();
-                String phone = TelefonoPersona.getText();
-                String email = emailPersona.getText();
-                String query2 = "insert into persona values ('" + name + "','" + email + "','" + phone + "','" + id + "',0);";
+                if (!existe) {
+                    String id = DNIPersona.getText();
+                    String name = nombrePersona.getText();
+                    String phone = "" + Integer.parseInt(TelefonoPersona.getText());
+                    String email = emailPersona.getText();
+                    String query2 = "insert into persona values ('" + name + "','" + email + "','" + phone + "','" + id + "',0);";
 
-                stmt.executeUpdate(query2);
-                rs.close();
+                    stmt.executeUpdate(query2);
+                    rs.close();
 
-                stmt.close();
-                conexion.close();
+                    stmt.close();
+                    conexion.close();
 
-                return 0;
+                    return 0;
 
-            } else {
-                int num_adopt = rs.getInt("animals_adopted");
-                rs.close();
-                stmt.close();
-                conexion.close();
-                return num_adopt;
+                } else {
+                    int num_adopt = rs.getInt("animals_adopted");
+                    rs.close();
+                    stmt.close();
+                    conexion.close();
+                    return num_adopt;
+                }
+
+            } catch (SQLException ex) {
+                Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NumberFormatException exception) {
+                errMess.setText("Telefono debe ser numerico");
             }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            errMess.setText("Ningun campo debe estar vacío");
         }
+
         return 0;
 
     }
@@ -266,52 +272,59 @@ public class darBajaAnimalController {
 
     public void adoptarButton() {
 
-        if (DNIPersona.getText() == "" || DNIPersona.getText().contains(" ")
-                || TelefonoPersona.getText() == "" || emailPersona.getText() == ""
-                || nombrePersona.getText() == "" || DNIPersona.getText() == null
-                || TelefonoPersona.getText() == null || emailPersona.getText() == null
-                || nombrePersona.getText() == null) {
-
-            errMess.setText("Ningun campo debe estar vacio");
-
-        } else {
-
+        if (!DNIPersona.getText().equalsIgnoreCase("") && !DNIPersona.getText().equalsIgnoreCase(" ")
+                && !TelefonoPersona.getText().equalsIgnoreCase("") && !TelefonoPersona.getText().equalsIgnoreCase(" ")
+                && !nombrePersona.getText().equalsIgnoreCase("") && !nombrePersona.getText().equalsIgnoreCase(" ")
+                && !emailPersona.getText().equalsIgnoreCase("") && !emailPersona.getText().equalsIgnoreCase(" ")) {
             int num_adopted = this.checkPerson();
 
             try {
-                // Carga el controlador JDBC
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                int min = Integer.parseInt(TelefonoPersona.getText());
+                if (min >= 10000000 && TelefonoPersona.getText().length() <= 10) {
+                    // Carga el controlador JDBC
+                    Class.forName("com.mysql.cj.jdbc.Driver");
 
-                // Establece la conexión con la base de datos
-                String url = "jdbc:mysql://localhost:3307/shelterly";
-                String usuario = "root";
-                String contraseña = "";
-                Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+                    // Establece la conexión con la base de datos
+                    String url = "jdbc:mysql://localhost:3307/shelterly";
+                    String usuario = "root";
+                    String contraseña = "";
+                    Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
 
-                Statement stmt = conexion.createStatement();
+                    Statement stmt = conexion.createStatement();
 
-                String query = "UPDATE animal SET exit_date = '" + fechaActual + "' WHERE aid=" + animalito.getId() + ";";
+                    String query = "UPDATE animal SET exit_date = '" + fechaActual + "' WHERE aid=" + animalito.getId() + ";";
 
-                stmt.executeUpdate(query);
+                    stmt.executeUpdate(query);
 
-                query = "UPDATE animal SET owner_id = '" + DNIPersona.getText() + "' WHERE aid=" + animalito.getId() + ";";
+                    query = "UPDATE animal SET owner_id = '" + DNIPersona.getText() + "' WHERE aid=" + animalito.getId() + ";";
 
-                stmt.executeUpdate(query);
+                    stmt.executeUpdate(query);
 
-                query = "UPDATE persona SET animals_adopted = " + (num_adopted + 1) + " WHERE identification='" + DNIPersona.getText() + "';";
+                    query = "UPDATE persona SET animals_adopted = " + (num_adopted + 1) + " WHERE identification='" + DNIPersona.getText() + "';";
 
-                stmt.executeUpdate(query);
+                    stmt.executeUpdate(query);
 
-                stmt.close();
-                conexion.close();
-                App.setRoot("secondary");
+                    stmt.close();
+                    conexion.close();
+                    App.setRoot("secondary");
+                } else {
+                    errMess.setText("Telefono debe ser de almenos 8 digitos y maximo 10");
+
+                }
+
             } catch (SQLException ex) {
                 Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(darBajaAnimalController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NumberFormatException w) {
+                errMess.setText("Telefono debe ser numerico");
             }
+
+        } else {
+            errMess.setText("Ningun campo debe estar vacio");
+
         }
 
     }

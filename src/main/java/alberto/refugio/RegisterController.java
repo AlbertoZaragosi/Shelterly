@@ -19,15 +19,12 @@ public class RegisterController {
 
     @FXML
     private Button Register;
-    
-    @FXML
-    private Pane panel;
-    
-    @FXML
-    private Pane panel2;
 
     @FXML
-    private TextField uAge;
+    private Pane panel;
+
+    @FXML
+    private Pane panel2;
 
     @FXML
     private TextField uEmail;
@@ -38,6 +35,9 @@ public class RegisterController {
     @FXML
     private TextField uname;
     
+    @FXML
+    private Label errMess;
+
     public static String encryptPassword(String password) {
         try {
             // Crear un objeto MessageDigest para SHA-256
@@ -62,44 +62,51 @@ public class RegisterController {
     }
 
     public void Register() {
-        try {
-            // Carga el controlador JDBC
-            Class.forName("com.mysql.cj.jdbc.Driver");
 
-            // Establece la conexión con la base de datos
-            String url = "jdbc:mysql://localhost:3307/shelterly";
-            String usuario = "root";
-            String contraseña = "";
-            Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
+        if (!uEmail.getText().equalsIgnoreCase("") && !uEmail.getText().equalsIgnoreCase(" ")
+                && !uname.getText().equalsIgnoreCase("") && !uname.getText().equalsIgnoreCase(" ")
+                && !uPassw.getText().equalsIgnoreCase("") && !uPassw.getText().equalsIgnoreCase(" ")) {
+            try {
+                // Carga el controlador JDBC
+                Class.forName("com.mysql.cj.jdbc.Driver");
 
-            Statement stmt = conexion.createStatement();
+                // Establece la conexión con la base de datos
+                String url = "jdbc:mysql://localhost:3307/shelterly";
+                String usuario = "root";
+                String contraseña = "";
+                Connection conexion = DriverManager.getConnection(url, usuario, contraseña);
 
-            User u = new User(uname.getText(),uEmail.getText(),Integer.parseInt(uAge.getText()),encryptPassword(uPassw.getText()));
-            String query = "insert into users (uname,uemail,uage,upassw) values('"+u.getName()+"','"+u.getEmail()+"',"+u.getAge()+",'"+u.getPassword()+"');";
-            
-            stmt.executeUpdate(query);
-            
+                Statement stmt = conexion.createStatement();
 
-            stmt.close();
-            conexion.close();
-            App.setRoot("primary");
-            
-            
-        } catch (ClassNotFoundException | SQLIntegrityConstraintViolationException ex) {
-            ex.printStackTrace();
-            // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
-        }catch(SQLException e){
-            
-        } catch (IOException ex) {
-            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+                User u = new User(uname.getText(), uEmail.getText(), encryptPassword(uPassw.getText()));
+                String query = "insert into users (uname,uemail,upassw) values('" + u.getName() + "','" + u.getEmail() + "','" + u.getPassword() + "');";
+
+                stmt.executeUpdate(query);
+
+                stmt.close();
+                conexion.close();
+                App.setRoot("primary");
+
+            } catch (ClassNotFoundException | SQLIntegrityConstraintViolationException ex) {
+                ex.printStackTrace();
+                // Manejo de excepciones, por ejemplo, mostrar un mensaje de error
+            } catch (SQLException e) {
+
+            } catch (IOException ex) {
+                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            errMess.setText("Ningun campo debe estar vacio");
         }
-    }
-    
-    public void initialize(){
-        panel2.toFront();
+
     }
 
-    public void volver(){
+    public void initialize() {
+        panel2.toFront();
+        errMess.setText("");
+    }
+
+    public void volver() {
         try {
             App.setRoot("primary");
         } catch (IOException ex) {

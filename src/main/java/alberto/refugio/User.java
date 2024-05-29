@@ -12,19 +12,19 @@ public class User {
     String name;
     String email;
     boolean isRoot;
-    int age;
+    //int age;
     String password;
 
     @Override
     public String toString() {
-        return "User{" + "name=" + name + ", email=" + email + ", isRoot=" + isRoot + ", age=" + age + ", password=" + password + '}';
+        return "User{" + "name=" + name + ", email=" + email + ", isRoot=" + isRoot + ", password=" + password + '}';
     }
 
-    public User(String name, String email, boolean isRoot, int age, String password) {
+    public User(String name, String email, boolean isRoot, String password) {
         this.name = name;
         this.email = email;
         this.isRoot = isRoot;
-        this.age = age;
+        //this.age = age;
         this.password = password;
     }
 
@@ -33,10 +33,10 @@ public class User {
         this.password = password;
     }
     
-    public User(String name, String email, int age, String password) {
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.age = age;
+        //this.age = age;
         this.password = password;
     }
 
@@ -62,14 +62,6 @@ public class User {
 
     public void setIsRoot(boolean isRoot) {
         this.isRoot = isRoot;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     public String getPassword() {

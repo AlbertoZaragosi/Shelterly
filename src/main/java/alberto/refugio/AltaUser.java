@@ -27,11 +27,8 @@ import javafx.scene.control.TextField;
 public class AltaUser {
 
     @FXML
-    private Label ShowPass;
+    private Label errMess;
 
-    @FXML
-    private TextField age;
-    
     @FXML
     private Button Volver;
 
@@ -49,11 +46,6 @@ public class AltaUser {
 
     @FXML
     private CheckBox root;
-
-    public void showPassword() {
-        ShowPass.setText(password.getText());
-
-    }
 
     public static String encryptPassword(String password) {
         try {
@@ -77,23 +69,24 @@ public class AltaUser {
             return null;
         }
     }
+    
+    public void initialize(){
+        errMess.setText("");
+    }
 
     public void darAlta() {
-        if (age.getText().equalsIgnoreCase(" ") || age.getText().equalsIgnoreCase("") || age.getText() == null) {
-        } else if (mail.getText().equalsIgnoreCase(" ") || mail.getText().equalsIgnoreCase("") || mail.getText() == null) {
-        } else if (name.getText().equalsIgnoreCase(" ") || name.getText().equalsIgnoreCase("") || name.getText() == null) {
-        } else if (password.getText().equalsIgnoreCase(" ") || password.getText().equalsIgnoreCase("") || password.getText() == null) {
-        } else {
+        if (!mail.getText().equalsIgnoreCase(" ") && !mail.getText().equalsIgnoreCase("")
+                && !name.getText().equalsIgnoreCase(" ") && !name.getText().equalsIgnoreCase("")) {
             this.altaUser();
+            try {
+                App.setRoot("Secondary");
+            } catch (IOException ex) {
+                Logger.getLogger(AltaUser.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            errMess.setText("Ningun campo debe estar vacio");
+        }
 
-        }
-        
-        try {
-            App.setRoot("Secondary");
-        } catch (IOException ex) {
-            Logger.getLogger(AltaUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }
 
     public void altaUser() {
@@ -110,7 +103,7 @@ public class AltaUser {
             Statement stmt = conexion.createStatement();
             boolean isRoot = root.isSelected();
 
-            String query = "insert into users values('" + name.getText() + "','" + mail.getText() + "'," + isRoot + "," + age.getText() + ",'" + encryptPassword(password.getText()) + "');";
+            String query = "insert into users values('" + name.getText() + "','" + mail.getText() + "'," + isRoot + ",'" + encryptPassword(password.getText()) + "');";
 
             stmt.executeUpdate(query);
 
@@ -122,9 +115,8 @@ public class AltaUser {
             Logger.getLogger(AltaAnimal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    public void volver(){
+
+    public void volver() {
         try {
             App.setRoot("secondary");
         } catch (IOException ex) {

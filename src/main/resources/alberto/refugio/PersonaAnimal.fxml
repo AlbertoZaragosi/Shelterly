@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="901.0" style="-fx-background-color: #9DDE8B;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="alberto.refugio.AnimalesDePersonaController">
+   <children>
+      <TableView fx:id="tablaAnimalesPersona" layoutX="277.0" layoutY="186.0" prefHeight="330.0" prefWidth="592.0" style="-fx-background-color: #E6FF94;">
+         <columns>
+            <TableColumn fx:id="idColumnPersona" prefWidth="24.800048828125" text="ID" />
+            <TableColumn fx:id="nameColumnPersona" prefWidth="62.4000244140625" text="NAME" />
+            <TableColumn fx:id="typeColumnPersona" prefWidth="73.5999755859375" text="TYPE" />
+            <TableColumn fx:id="raceColumnPersona" prefWidth="127.20004272460938" text="RACE" />
+            <TableColumn fx:id="ageColumnPersona" prefWidth="38.40008544921875" text="AGE" />
+            <TableColumn fx:id="weightColumnPersona" prefWidth="55.20013427734375" text="WEIGHT" />
+            <TableColumn fx:id="entryColumnPersona" prefWidth="100.00006103515625" text="ENTRY" />
+            <TableColumn fx:id="exitColumnPersona" prefWidth="111.199951171875" text="EXIT" />
+         </columns>
+      </TableView>
+      <Label layoutX="31.0" layoutY="42.0" text="Adoptante:" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="nombre" layoutX="140.0" layoutY="42.0" prefHeight="30.0" prefWidth="130.0" text="Example" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="94.0" text="Email:" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="email" layoutX="140.0" layoutY="94.0" prefHeight="30.0" prefWidth="130.0" text="Example" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="142.0" text="Teléfono:" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="telefono" layoutX="140.0" layoutY="142.0" prefHeight="30.0" prefWidth="130.0" text="Example" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="192.0" text="DNI:" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="dni" layoutX="140.0" layoutY="192.0" prefHeight="30.0" prefWidth="130.0" text="Example" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="388.0" layoutY="142.0" text="Animales adoptados:" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="num" layoutX="585.0" layoutY="142.0" prefHeight="30.0" prefWidth="130.0" text="Example" textFill="#006769">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="54.0" layoutY="433.0" mnemonicParsing="false" onAction="#volver" prefHeight="58.0" prefWidth="151.0" style="-fx-background-color: #40A578;" text="Volver" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Button>
+      <Button fx:id="ModificarAnimal" layoutX="331.0" layoutY="53.0" mnemonicParsing="false" onAction="#mofificarAnimal" prefHeight="18.0" prefWidth="239.0" style="-fx-background-color: #40A578;" text="Modificar animal" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="verVcaunas" layoutX="599.0" layoutY="53.0" mnemonicParsing="false" onAction="#regitroVacunas" prefHeight="43.0" prefWidth="151.0" style="-fx-background-color: #40A578;" text="Ver vacunas" textFill="WHITE">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
